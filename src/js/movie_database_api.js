@@ -17,7 +17,6 @@ export default class FilmApiService {
       const trendingData = await axios.get(url, {
         params: { api_key: API_KEY, language: 'en-US', page: this.pageNumber },
       });
-      console.log(trendingData.data.results);
       return trendingData.data.results;
     } catch {
       error => console.log(error);
@@ -63,9 +62,7 @@ export default class FilmApiService {
       const genres = await axios.get(
         `${BASE_URL}${postBaseUrl}${searchParams}`
       );
-      return genres.then(res => {
-        return res.data.genres;
-      });
+      return genres.data.genres;
     } catch {
       error => console.log(error);
     }

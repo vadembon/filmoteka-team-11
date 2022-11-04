@@ -6,11 +6,15 @@ apiRequest.pageNumber = 3;
 
 const genres = apiRequest.fetchGenres();
 const trendingList = apiRequest.fetchTrendingMovies();
-console.log(genres);
+
+genres.then(res => console.log('Genres', res));
 
 // genres.then(res => console.log(res.data.genres));
-trendingList.then(res => console.log(res));
-console.log('fgtryhju');
+
+trendingList.then(res =>
+  console.log('Trending', res, 'Page', apiRequest.pageNumber)
+);
+// console.log('fgtryhju');
 
 trendingList.then(res => {
   const id = res[1].id;
