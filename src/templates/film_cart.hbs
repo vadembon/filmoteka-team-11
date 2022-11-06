@@ -1,0 +1,16 @@
+{{#each this}}
+  <li class='cart'>
+    <a href='' class='cart__link'>
+      <img
+        src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+        alt='poster path of {{title}}'
+        class='cart__image'
+      />
+      <b class='cart__title'>{{title}}</b>
+      <div class='cart__wrap'>
+        <p class='cart__genres'>{{genre_ids}}</p>
+        <p class='cart__year'>{{release_date}}</p>
+      </div>
+    </a>
+  </li>
+{{/each}}
