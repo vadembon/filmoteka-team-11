@@ -1,7 +1,21 @@
 import FilmApiService from './js/movie_database_api';
 import { render } from './js/example';
+import renderModal from './templates/modal.hbs';
+// import { renderM } from './js/example';
 
 const apiRequest = new FilmApiService();
+
+const refs = {
+  filmList: document.querySelector('.film-list'),
+  genreSelect: document.querySelector('.js-filter-genres'),
+  modal: document.querySelector('.modal'),
+};
+
+function renderM(ar) {
+  const markupm = renderModal(ar);
+  console.log(markupm);
+  refs.modal.insertAdjacentHTML('afterbegin', markupm);
+}
 
 apiRequest.pageNumber = 1;
 
@@ -12,8 +26,9 @@ genres.then(res => console.log('Genres', res));
 
 trendingList.then(res => render(res));
 
+trendingList.then(res => renderM(res[0]));
 trendingList.then(res =>
-  console.log('Trending', res, 'Page', apiRequest.pageNumber)
+  console.log('Trending', res[0], 'Page', apiRequest.pageNumber)
 );
 // console.log('fgtryhju');
 
