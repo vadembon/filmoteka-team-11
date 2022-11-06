@@ -25,13 +25,15 @@ export function render(arobj) {
   const markup = renderFilmCart(arobj);
   // console.log(markup);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
+
   const link = document.querySelector('.cart__link');
   link.addEventListener('click', onClick);
   console.log(link);
 }
 
 function onClick(evt) {
-  console.log(evt);
+  evt.preventDefault();
+  console.log(evt.target.value);
 }
 
 console.log('hfjkssk');
