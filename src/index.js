@@ -1,4 +1,5 @@
 import FilmApiService from './js/movie_database_api';
+import { render } from './js/example';
 
 const apiRequest = new FilmApiService();
 
@@ -9,7 +10,7 @@ const trendingList = apiRequest.fetchTrendingMovies();
 
 genres.then(res => console.log('Genres', res));
 
-// genres.then(res => console.log(res.data.genres));
+trendingList.then(res => render(res));
 
 trendingList.then(res =>
   console.log('Trending', res, 'Page', apiRequest.pageNumber)

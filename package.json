@@ -2,20 +2,20 @@
   "name": "filmoteka-team-19",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://AlexAmanitas.github.io/filmoteka-team-19",
+  "homepage": "https://AlexAmanitas.github.io/filmoteka-team-11",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /filmoteka-team-19/"
+    "build": "parcel build src/*.html --public-url /filmoteka-team-11/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexAmanitas/filmoteka-team-19.git"
+    "url": "git+https://github.com/AlexAmanitas/filmoteka-team-11.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlexAmanitas/filmoteka-team-19/issues"
+    "url": "https://github.com/AlexAmanitas/filmoteka-team-11/issues"
   },
   "dependencies": {
     "axios": "^1.1.3",
