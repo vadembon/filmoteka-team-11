@@ -1,6 +1,9 @@
 .header-library {
     margin-right: auto;
     margin-left: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
     @media screen and (min-width: $mobile) {
         height: 230px;
@@ -20,10 +23,6 @@
                 rgba(0, 0, 0, 0.56)),
             url(../images/header-library-background-img/header-library-bcgrd-mobile2x.png);
     }
-
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 
     @media screen and (min-width: $tablet) {
         height: 216px;
@@ -71,27 +70,56 @@
 
     @media screen and (min-width: $tablet) {
         margin-left: 10px;
-        font-family: 'Roboto';
-        font-style: normal;
         font-weight: 500;
         font-size: 30px;
         line-height: 1.17;
-        color: #ffffff;
+        color: $header-text-color;
         display: flex;
     }
 }
 
+.header-library__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 1;
+    transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    animation: scale-logo 2000ms infinite linear;
+
+    @keyframes scale-logo {
+        0% {
+            transform: scale(0.75) rotate(180deg);
+        }
+
+        50% {
+            transform: scale(1.25);
+        }
+
+        100% {
+            transform: scale(0.75) rotate(360deg);
+        }
+    }
+
+    @include tablet {
+        margin-left: 17px;
+    }
+
+
+}
+
 .header-library__link {
     position: relative;
-    color: #fff;
+    color:$header-text-color;
     text-decoration: none;
-    font-family: 'Roboto';
-    font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;
     text-transform: uppercase;
     margin-left: auto;
+}
+
+.header-library__link--active {
+    border-bottom: 3px solid #ff001b;
 }
 
 .header-library__link:last-child {
@@ -109,19 +137,27 @@
 
 .header-library__btn {
     padding: 14px 36px 12px 36px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
     text-transform: uppercase;
-    color: #ffffff;
-    width: 129.53px;
+    color: $header-text-color;
+    width: 130px;
     height: 44px;
     border-radius: 5px;
     background-color: transparent;
-    border-color: #fff;
+    border-color:$header-text-color;
+    scale: 1;
     cursor: pointer;
+    transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus, 
+    .is-active{
+        scale: 1.1;
+        box-shadow: (0px 8px 43px rgba(255, 107, 1, 0.6));
+        background-color: $accentBg-color;
+        border: $accentBg-color;
+    }
 
     @media screen and (min-width: $tablet) {
         width: 152px;
@@ -140,21 +176,6 @@
     margin-right: 0;
 }
 
-.header-library__btn:hover {
-    background-color: #ff6b01;
-    border: none;
-}
-
-.header-library__btn:focus {
-    background-color: #ff6b01;
-    border: none;
-}
-
-.header-library__btn.is-active {
-    background-color: #ff6b01;
-    border: none;
-}
-
 .nav-library {
     display: flex;
     align-items: center;
@@ -169,4 +190,38 @@
 .nav-library__logo {
     display: flex;
     align-items: center;
+}
+
+
+// Ще обдумати, як це зробити
+.plug {
+    // display: block;
+    padding-top: 30px;
+    // align-content: center;
+    // align-items: center;
+
+    @media screen and (min-width: 1280px) {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+.plug-img {
+    width: 130px;
+
+    @media screen and (min-width: 768px) {
+        width: 300px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        width: 350px;
+    }
+}
+
+.plug-text {
+    font-size: 14px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 28px;
+    }
 }
