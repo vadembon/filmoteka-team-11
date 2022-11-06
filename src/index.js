@@ -26,15 +26,15 @@ trendingList.then(res =>
 
 //////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-apiRequest.searchQuery = 'titanic';
-const search = apiRequest.fetchSearchMovie();
-search.then(res => render(res));
+// apiRequest.searchQuery = 'titanic';
+// const search = apiRequest.fetchSearchMovie();
+// search.then(res => render(res));
 
-function render(obj) {
-  const img = document.querySelector('.movie');
-  const markup = `<img src="https://image.tmdb.org/t/p/w500${obj[0].poster_path}" alt="poster path of ${obj[0].title}">
-	<img src="https://image.tmdb.org/t/p/w300${obj[0].backdrop_path}" alt="poster path of ${obj[0].title}">
-		<img src="https://image.tmdb.org/t/p/w500${obj[0].backdrop_path}" alt="poster path of ${obj[0].title}">
-		<img src="https://image.tmdb.org/t/p/w1280${obj[0].backdrop_path}" alt="poster path of ${obj[0].title}">`;
-  img.insertAdjacentHTML('beforeend', markup);
-}
+// function render(obj) {
+//   const img = document.querySelector('.movie');
+//   const markup = `<img src="https://image.tmdb.org/t/p/w500${obj[0].poster_path}" alt="poster path of ${obj[0].title}">
+// 	<img src="https://image.tmdb.org/t/p/w300${obj[0].backdrop_path}" alt="poster path of ${obj[0].title}">
+// 		<img src="https://image.tmdb.org/t/p/w500${obj[0].backdrop_path}" alt="poster path of ${obj[0].title}">
+// 		<img src="https://image.tmdb.org/t/p/w1280${obj[0].backdrop_path}" alt="poster path of ${obj[0].title}">`;
+//   img.insertAdjacentHTML('beforeend', markup);
+// }
