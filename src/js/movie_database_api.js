@@ -29,6 +29,24 @@ export default class FilmApiService {
     }
   }
 
+  async fetchMoviesWithGenre(genre) {
+    console.log(genre);
+    const url = `${BASE_URL}/discover/movie?`;
+
+    try {
+      const trendingData = await axios.get(url, {
+        params: {
+          api_key: API_KEY,
+          language: 'uk-UA',
+          with_genres: genre,
+        },
+      });
+      return trendingData.data.results;
+    } catch {
+      error => console.log(error);
+    }
+  }
+
   async fetchSearchMovie() {
     const url = `${BASE_URL}/search/movie/?`;
 
