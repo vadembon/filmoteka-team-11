@@ -170,3 +170,18 @@
 .cart__link {
   width: 100%;
 }
+
+.cart__image {
+  width: 280px;
+  height: 398px;
+
+  @include tablet {
+    width: 336px;
+    height: 455px;
+  }
+
+  @include desktop {
+    width: 395px;
+    height: 574px;
+  }
+}
