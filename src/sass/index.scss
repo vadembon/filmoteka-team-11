@@ -1,5 +1,12 @@
-@import './common';
+@import './base/common';
+@import './utils/variables';
+@import './utils/mixins';
+@import './base/reset';
+@import './base/container';
+
+@import './utils/visually-hidden';
+@import './layouts/home_header';
 @import './example';
-@import './footer';
-@import './footer_modal';
-@import './film__modal';
+@import './layouts/footer';
+@import './layouts/footer_modal';
+@import './layouts/film__modal';
