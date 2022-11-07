@@ -1,15 +1,15 @@
 {{!-- {{#each this}} --}}
 <li class='collection__item'>
-  <a href='' class='cart__link' value='{{id}}'>
+  <a href='' class='card__link' value='{{id}}'>
     <img
       src='https://image.tmdb.org/t/p/w500{{poster_path}}'
       alt='poster path of {{title}}'
-      class='cart__image'
+      class='card__img'
     />
-    <b class='cart__title'>{{title}}</b>
-    <div class='cart__wrap'>
-      <p class='cart__genres'>{{genre_ids}}</p>
-      <p class='cart__year'>{{release_date}}</p>
+    <b class='card__title'>{{title}}</b>
+    <div class='card__wrap'>
+      <p class='card__genres'>{{genre_ids}}</p>
+      <p class='card__year'>{{release_date}}</p>
     </div>
   </a>
 </li>
