@@ -57,12 +57,12 @@
 }
 .header__nav-wrap {
   display: flex;
+  justify-content: space-between;
 }
 
 .header__nav-list {
   display: flex;
-  margin-left: 114px;
-  margin-top: 2px;
+  
 
   @include tablet {
     margin-left: auto;
@@ -79,6 +79,7 @@
   line-height: 14px;
   text-transform: uppercase;
   color: #ffffff;
+ 
 }
 .header__nav-link--active {
   border-bottom: 3px solid #ff001b;
