@@ -70,7 +70,7 @@ export default class FilmApiService {
       const details = await axios.get(url, {
         params: { api_key: API_KEY, language: 'en-US' },
       });
-      return details;
+      return details.data;
     } catch {
       error => console.log(error);
     }
