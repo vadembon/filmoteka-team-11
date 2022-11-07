@@ -1,35 +1,37 @@
 import FilmApiService from './js/movie_database_api';
 import { render } from './js/example';
 import renderModal from './templates/modal.hbs';
+import renderMovieList from './js/render_movie_list';
 // import { renderM } from './js/example';
 
-const apiRequest = new FilmApiService();
+// renderMovieList();
+// const apiRequest = new FilmApiService();
 
-const refs = {
-  filmList: document.querySelector('.film-list'),
-  genreSelect: document.querySelector('.js-filter-genres'),
-  modal: document.querySelector('.modal'),
-};
+// const refs = {
+//   filmList: document.querySelector('.film-list'),
+//   genreSelect: document.querySelector('.js-filter-genres'),
+//   modal: document.querySelector('.modal'),
+// };
 
-function renderM(ar) {
-  const markupm = renderModal(ar);
-  console.log(markupm);
-  refs.modal.insertAdjacentHTML('afterbegin', markupm);
-}
+// function renderM(ar) {
+//   const markupm = renderModal(ar);
+//   console.log(markupm);
+//   refs.modal.insertAdjacentHTML('afterbegin', markupm);
+// }
 
-apiRequest.pageNumber = 1;
+// apiRequest.pageNumber = 1;
 
-const genres = apiRequest.fetchGenres();
-const trendingList = apiRequest.fetchTrendingMovies();
+// const genres = apiRequest.fetchGenres();
+// const trendingList = apiRequest.fetchTrendingMovies();
 
-genres.then(res => console.log('Genres', res));
+// genres.then(res => console.log('Genres', res));
 
-trendingList.then(res => render(res));
+// trendingList.then(res => render(res));
 
-trendingList.then(res => renderM(res[0]));
-trendingList.then(res =>
-  console.log('Trending', res[0], 'Page', apiRequest.pageNumber)
-);
+// trendingList.then(res => renderM(res[0]));
+// trendingList.then(res =>
+//   console.log('Trending', res[0], 'Page', apiRequest.pageNumber)
+// );
 // console.log('fgtryhju');
 
 //////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
