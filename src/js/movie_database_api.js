@@ -9,6 +9,7 @@ export default class FilmApiService {
     this.searchQuery = '';
     this.pageNumber = 1;
     this.genre = 'comedy';
+    this.language = 'uk-UA';
   }
 
   async fetchTrendingMovies() {
@@ -18,7 +19,7 @@ export default class FilmApiService {
       const trendingData = await axios.get(url, {
         params: {
           api_key: API_KEY,
-          language: 'uk-UA',
+          language: this.language,
           page: this.pageNumber,
           // genre: this.genre,
         },
@@ -37,7 +38,7 @@ export default class FilmApiService {
       const trendingData = await axios.get(url, {
         params: {
           api_key: API_KEY,
-          language: 'uk-UA',
+          language: this.language,
           with_genres: genre,
         },
       });
@@ -54,7 +55,7 @@ export default class FilmApiService {
       const searchingData = await axios.get(url, {
         params: {
           api_key: API_KEY,
-          language: 'uk-UA',
+          language: this.language,
           query: this.searchQuery,
         },
       });
@@ -68,7 +69,7 @@ export default class FilmApiService {
     const url = `${BASE_URL}/movie/${id}?`;
     try {
       const details = await axios.get(url, {
-        params: { api_key: API_KEY, language: 'en-US' },
+        params: { api_key: API_KEY, language: this.language },
       });
       return details.data;
     } catch {

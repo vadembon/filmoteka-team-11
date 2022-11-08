@@ -3,6 +3,7 @@ export const refs = {
   searchForm: document.querySelector('.header__search-form'),
   searchInput: document.querySelector('.js-search-input'),
   searchBtn: document.querySelector('.header__form-submit-btn'),
+  searchList: document.querySelector('.search-form-list'),
   filmList: document.querySelector('.collection'),
   genreSelect: document.querySelector('.js-filter-genres'),
   modal: document.querySelector('.modal-info'),
