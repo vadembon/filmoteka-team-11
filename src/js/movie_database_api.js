@@ -9,7 +9,7 @@ export default class FilmApiService {
     this.searchQuery = '';
     this.pageNumber = 1;
     this.genre = 'comedy';
-    this.language = 'uk-UA';
+    this.language = 'en-US';
   }
 
   async fetchTrendingMovies() {

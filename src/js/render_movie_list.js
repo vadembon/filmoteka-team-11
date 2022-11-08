@@ -7,7 +7,7 @@ const apiRequest = new FilmApiService();
 const movieArr = apiRequest.fetchTrendingMovies();
 
 movieArr.then(res => {
-  render(transformObjUa(res));
+  render(transformObj(res));
 });
 
 export default function render(movieArr) {
