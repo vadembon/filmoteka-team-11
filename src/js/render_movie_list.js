@@ -9,7 +9,7 @@ movieArr.then(res => render(res));
 
 export default function render(movieArr) {
   console.log(movieArr);
-  const markup = movieArr.map(el => renderFilmCart(el)).join('');
+  const markup = renderFilmCart(movieArr);
   // console.log(markup);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
 }

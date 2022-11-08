@@ -1,18 +1,18 @@
-{{!-- {{#each this}} --}}
-<li class='collection__item'>
-  <a href='' class='card__link' value='{{id}}'>
-    <img
-      src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-      alt='poster path of {{title}}'
-      class='card__img'
-    />
+{{#each this}}
+  <li class='collection__item'>
+    <a href='' class='card__link' value='{{id}}'>
+      <img
+        src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+        alt='poster path of {{title}}'
+        class='card__img'
+      />
 
-    <b class='cart__title'>{{title}}</b>
-    <div class='cart__wrap'>
-      <p class='cart__genres'>{{genre_ids}}&nbsp;|&nbsp;</p>
-      <p class='cart__year'>{{release_date}}</p>
+      <b class='cart__title'>{{title}}</b>
+      <div class='cart__wrap'>
+        <p class='cart__genres'>{{genre_ids}}&nbsp;|&nbsp;</p>
+        <p class='cart__year'>{{release_date}}</p>
 
-    </div>
-  </a>
-</li>
-{{!-- {{/each}} --}}
+      </div>
+    </a>
+  </li>
+{{/each}}
