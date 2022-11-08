@@ -11,10 +11,9 @@ movieArr.then(res => {
 });
 
 export default function render(movieArr) {
-  console.log(movieArr);
   refs.filmList.innerHTML = '';
   const markup = renderFilmCart(movieArr);
-  // console.log(markup);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
   refs.searchBtn.setAttribute('disabled', 'disabled');
+  const link = document.querySelector('.card__link');
 }

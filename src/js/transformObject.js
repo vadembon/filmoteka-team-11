@@ -10,7 +10,6 @@ export function transformObj(arrObj) {
       : ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
   });
   return arrObj;
-  console.log(arrObj);
 }
 
 export function transformObjUa(arrObj) {
