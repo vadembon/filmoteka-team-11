@@ -2,6 +2,9 @@ import FilmApiService from './js/movie_database_api';
 import { render } from './js/example';
 import renderModal from './templates/modal.hbs';
 import renderMovieList from './js/render_movie_list';
+import { refs } from './js/refs';
+import * as footer_modal from './js/footer_modal';
+
 // import { renderM } from './js/example';
 
 // renderMovieList();
