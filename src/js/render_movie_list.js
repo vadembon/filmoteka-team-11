@@ -15,5 +15,4 @@ export default function render(movieArr) {
   const markup = renderFilmCart(movieArr);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
   refs.searchBtn.setAttribute('disabled', 'disabled');
-  const link = document.querySelector('.card__link');
 }
