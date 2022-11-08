@@ -8,5 +8,6 @@ export const refs = {
   modal: document.querySelector('.modal-info'),
 
   footerModalBackdrop: document.querySelector('.modal-backdrop'),
-  footerCloseBtn: document.querySelector('.modal-team__btn'),
-};
+  footerCloseModal: document.querySelector('.modal-team__btn'),
+  footerOpenModal: document.querySelector('.js-footer_link')
+}
