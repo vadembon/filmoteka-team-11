@@ -1,21 +1,22 @@
-footerCloseBtn.addEventListener('click', onCloseBtn);
-footerModalBackdrop.addEventListener('click', onCloseBackdrop);
+import { refs } from './refs';
 
-function onCloseBtn (e) {
-    e.prevent.Default();
-    footerModalBackdrop.classList.remove('is-hidden');
-    body.classList.add('modal-open');
+refs.footerCloseBtn.addEventListener('click', onCloseBtn);
+refs.footerModalBackdrop.addEventListener('click', onCloseBackdrop);
 
-    if (e.target !== e.currentTarget) {
-    footerModalBackdrop.classList.add('is-hidden');
-    body.classList.remove('modal-open');
-    }
+function onCloseBtn(e) {
+  e.preventDefault();
+  refs.footerModalBackdrop.classList.remove('is-hidden');
+  refs.body.classList.add('modal-open');
+
+  if (e.target !== e.currentTarget) {
+    refs.footerModalBackdrop.classList.add('is-hidden');
+    refs.body.classList.remove('modal-open');
+  }
 }
 
-
-function onCloseBackdrop (e) {
-    if (e.target === e.currentTarget) {
-    footerModalBackdrop.classList.add('is-hidden');
-    body.classList.remove('modal-open');
-}
+function onCloseBackdrop(e) {
+  if (e.target === e.currentTarget) {
+    refs.footerModalBackdrop.classList.add('is-hidden');
+    refs.body.classList.remove('modal-open');
+  }
 }
