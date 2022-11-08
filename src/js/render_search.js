@@ -4,7 +4,7 @@ import FilmApiService from './movie_database_api';
 import { transformObjUa, transformObj } from './transformObject';
 import { refs } from './refs';
 import debounce from 'lodash.debounce';
-var debounce = require('lodash.debounce');
+
 import Notiflix from 'notiflix';
 
 const apiRequest = new FilmApiService();
@@ -24,8 +24,9 @@ function onSubmit(evt) {
       Notiflix.Notify.failure('Sorry, film is not found. Please try again.');
       return;
     }
-    renderList(res);
+    renderList(transformObjUa(res));
     refs.searchInput.value = '';
+    refs.searchList.innerHTML = '';
   });
 }
 

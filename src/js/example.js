@@ -24,12 +24,12 @@ console.log('hfjkssk');
 
 ///////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-refs.genreSelect.addEventListener('change', onChange);
+// refs.genreSelect.addEventListener('change', onChange);
 
-function onChange(evt) {
-  refs.filmList.innerHTML = '';
-  const genreId = evt.target.value;
+// function onChange(evt) {
+//   refs.filmList.innerHTML = '';
+//   const genreId = evt.target.value;
 
-  const genred = apiRequest.fetchMoviesWithGenre(genreId);
-  genred.then(res => render(res));
-}
+//   const genred = apiRequest.fetchMoviesWithGenre(genreId);
+//   genred.then(res => render(res));
+// }
