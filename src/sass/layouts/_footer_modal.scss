@@ -1,0 +1,52 @@
+.overlay {
+  pointer-events: none;
+  opacity: 0;
+  z-index: 5;
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+//   background-color: ;
+
+  @media screen and (max-width: 767px) {
+    padding: 20px 0 30px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding: 219px 0 30px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 150px 0 30px;
+  }
+}
+
+.modal {
+  position: relative;
+//   background-color: ;
+  border-radius: 5px;
+  z-index: 50;
+
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    height: 940px;
+    padding: 48px 20px 40px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 704px;
+    height: 552px;
+    padding: 40px 36px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 806px;
+    height: 558px;
+    padding: 40px 12px;
+  }
+}
