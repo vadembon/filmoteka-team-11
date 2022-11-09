@@ -1,5 +1,4 @@
 import { genres, genresUa } from './genres';
-// import genresUa from './genres';
 
 export function idToGenre(id) {
   const ar = [];

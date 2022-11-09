@@ -1,13 +1,14 @@
 import renderFilmCart from '../templates/film_cart.hbs';
 import FilmApiService from './movie_database_api';
 import { refs } from './refs';
-import { transformObjUa, transformObj } from './transformObject';
+import transformObj from './transformObject';
 
 const apiRequest = new FilmApiService();
+const transform = new transformObj();
 const movieArr = apiRequest.fetchTrendingMovies();
 
 movieArr.then(res => {
-  render(transformObj(res));
+  render(transform.transformObj(res));
 });
 
 export default function render(movieArr) {

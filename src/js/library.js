@@ -3,10 +3,6 @@ import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 // import renderList from './render_movie_list';
 
-export default function trem(link) {
-  console.log(link);
-}
-
 console.log('hhfhfj');
 
 // refs.filmList.addEventListener('click', e => {
