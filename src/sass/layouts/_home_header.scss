@@ -217,3 +217,23 @@ input:checked + .slider {
   transform: translateX(-82px);
   /*translateX(-(w-h))*/
 }
+
+.header_button-leng{
+ background-color: transparent;
+ border: none;
+ border-bottom: 3px solid #ff001b;
+ color: #ffffff;
+}
+
+.header_button-leng:focus{
+  box-shadow: 0 0 0 2px #ff001b, 0 0 8px #ff001b;
+  border: none;}
+
+  .header_button-leng:hover{
+    box-shadow: 0 0 0 2px #ff001b, 0 0 8px #ff001b;
+    border: none;}
+.header_button-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
