@@ -9,7 +9,7 @@ import * as render_search from './js/render_search';
 import * as renderGenre from './js/renderGenres';
 import idToGenre from './js/idToGenre';
 import renderModal from './js/render_film_modal';
-
+import './js/pagination.js';
 // import { renderM } from './js/example';
 
 // renderMovieList();

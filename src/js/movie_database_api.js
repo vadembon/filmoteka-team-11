@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import './js/pagination.js';
 
 // const axios = require('axios');
 const API_KEY = 'ec34284630374f864ce40bf102f3f73e';
