@@ -22,7 +22,6 @@ export default class FilmApiService {
           api_key: API_KEY,
           language: this.language,
           page: this.pageNumber,
-          // genre: this.genre,
         },
       });
       return trendingData.data.results;
@@ -112,5 +111,9 @@ export default class FilmApiService {
 
   set query(newQuery) {
     this.searchQuery = newQuery;
+  }
+
+  set page(newPage) {
+    this.pageNumber = newPage;
   }
 }

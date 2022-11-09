@@ -1,3 +1,8 @@
+import FilmApiService from './movie_database_api';
+import renderFilmList from './render_movie_list';
+
+const apiRequest = new FilmApiService();
+const lang = localStorage.getItem('language');
 
 const btn1Ref = document.querySelector('[data-index="1"]');
 const btn2Ref = document.querySelector('[data-index="2"]');
@@ -28,6 +33,9 @@ function onPaginationClick(event) {
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
       currentPage = Number(event.target.textContent);
+      console.log(currentPage);
+      apiRequest.pageNumber = currentPage;
+      renderFilmList(lang);
     }
 
     prevDotsRef.hidden = true;
@@ -105,9 +113,11 @@ function onPaginationClick(event) {
     }
 
     gallery.innerHTML = '';
+    apiRequest.pageNumber = currentPage;
+    renderFilmList(lang, currentPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    console.log('currentPage: ',currentPage);
+    console.log('currentPage: ', currentPage, apiRequest.pageNumber);
   }
   // movieArr(currentPage).then(res => render(res));
 }
@@ -125,4 +135,4 @@ function defineResultsPerPage() {
   return pageSize;
 }
 
-export { currentPage, defineResultsPerPage};
+export { currentPage, defineResultsPerPage };

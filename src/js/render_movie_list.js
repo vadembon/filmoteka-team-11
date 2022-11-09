@@ -3,9 +3,12 @@ import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import transformObj from './transformObject';
 
-export default function renderFilmList(lang) {
+export default function renderFilmList(lang, page) {
   const apiRequest = new FilmApiService();
   apiRequest.language = lang;
+  apiRequest.pageNumber = page;
+
+  console.log('page', apiRequest.pageNumber);
 
   const movieArr = apiRequest.fetchTrendingMovies();
 
