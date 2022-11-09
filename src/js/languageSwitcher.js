@@ -1,5 +1,6 @@
 import { refs } from './refs';
 import FilmApiService from './movie_database_api';
+import renderFilmList from './render_movie_list';
 import GenresLanguage from './render_genres';
 
 const apiRequest = new FilmApiService();
@@ -9,19 +10,26 @@ refs.uaLanguageBtn.addEventListener('click', onClickUa);
 refs.ukLanguageBtn.addEventListener('click', onClickUk);
 
 function onClickUa() {
+  localStorage.setItem('language', 'uk-UA');
   genresSelect.renderGenresUa();
   refs.searchInput.setAttribute('placeholder', 'Пошук фильмів');
-  refs.headerLibrary.innerHTML = 'Бібліотека';
-  refs.headerHome.innerHTML = 'головна';
-  refs.themeDark.innerHTML = 'темна';
-  refs.themeLight.innerHTML = 'світла';
+  refs.headerLibrary.textContent = 'Бібліотека';
+  refs.headerHome.textContent = 'головна';
+  refs.themeDark.textContent = 'темна';
+  refs.themeLight.textContent = 'світла';
+  apiRequest.language = localStorage.getItem('language');
+  console.log(localStorage.getItem('language'));
+  renderFilmList(apiRequest.language);
 }
 
 function onClickUk() {
+  localStorage.setItem('language', 'en-US');
   genresSelect.renderGenresUk();
   refs.searchInput.setAttribute('placeholder', 'Movie search');
-  refs.headerLibrary.innerHTML = 'library';
-  refs.headerHome.innerHTML = 'home';
-  refs.themeDark.innerHTML = 'dark';
-  refs.themeLight.innerHTML = 'light';
+  refs.headerLibrary.textContent = 'library';
+  refs.headerHome.textContent = 'home';
+  refs.themeDark.textContent = 'dark';
+  refs.themeLight.textContent = 'light';
+  apiRequest.language = localStorage.getItem('language');
+  renderFilmList(apiRequest.language);
 }

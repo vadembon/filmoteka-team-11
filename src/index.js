@@ -1,22 +1,14 @@
-import FilmApiService from './js/movie_database_api';
-import { render } from './js/example';
-// import renderModal from './templates/modal.hbs';
-import renderMovieList from './js/render_movie_list';
+import './js/render_movie_list';
 
-import { refs } from './js/refs';
-import * as footer_modal from './js/footer_modal';
-import * as render_search from './js/render_search';
-import * as renderGenre from './js/render_genres';
-import idToGenre from './js/idToGenre';
+import './js/footer_modal';
+import './js/render_search';
+import './js/render_genres';
+
 import renderModal from './js/render_film_modal';
 import './js/pagination.js';
-// import { renderM } from './js/example';
-import * as languageSwitch from './js/languageSwitcher';
+import './js/languageSwitcher';
+import './js/library';
 
-console.log(
-  refs.headerLibrary.innerHTML,
-  refs.searchInput.getAttribute('placeholder')
-);
 // renderMovieList();
 // const apiRequest = new FilmApiService();
 

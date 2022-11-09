@@ -3,17 +3,22 @@ import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import transformObj from './transformObject';
 
-const apiRequest = new FilmApiService();
-const transform = new transformObj();
-const movieArr = apiRequest.fetchTrendingMovies();
+export default function renderFilmList(lang) {
+  const apiRequest = new FilmApiService();
+  apiRequest.language = lang;
 
-movieArr.then(res => {
-  render(transform.transformObjUk(res));
-});
+  const movieArr = apiRequest.fetchTrendingMovies();
 
-export default function render(movieArr) {
+  movieArr.then(res => {
+    render(transformObj(res, lang));
+    console.log(apiRequest.language);
+  });
+}
+function render(movieArr) {
   refs.filmList.innerHTML = '';
   const markup = renderFilmCart(movieArr);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
   refs.searchBtn.setAttribute('disabled', 'disabled');
 }
+
+renderFilmList('en-US');

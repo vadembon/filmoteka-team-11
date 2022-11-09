@@ -1,10 +1,8 @@
 import { idToGenre, idToGenreUa } from './idToGenre';
 import comingSoon from '../images/coming_soon.jpg';
 
-export default class transformObj {
-  constructor() {}
-
-  transformObjUk(arrObj) {
+export default function transformObj(arrObj, lang) {
+  if (lang === 'en-US') {
     arrObj.map(el => {
       el.genre_ids = idToGenre(el.genre_ids);
       el.release_date = el.release_date.slice(0, 4);
@@ -14,8 +12,7 @@ export default class transformObj {
     });
     return arrObj;
   }
-
-  transformObjUa(arrObj) {
+  if (lang === 'uk-UA') {
     arrObj.map(el => {
       el.genre_ids = idToGenreUa(el.genre_ids);
       el.release_date = el.release_date.slice(0, 4);

@@ -82,7 +82,7 @@ export default class FilmApiService {
     const postBaseUrl = '/genre/movie/list?';
     const searchParams = new URLSearchParams({
       api_key: API_KEY,
-      language: 'en-US',
+      language: this.language,
     });
     try {
       const genres = await axios.get(
