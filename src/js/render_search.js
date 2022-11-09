@@ -9,6 +9,7 @@ import Notiflix from 'notiflix';
 
 const apiRequest = new FilmApiService();
 const transform = new transformObj();
+const lang = localStorage.getItem('language');
 
 refs.searchForm.addEventListener('submit', onSubmit);
 refs.searchInput.addEventListener('input', debounce(onInput, 350));
@@ -50,7 +51,7 @@ function onInput(evt) {
     }
 
     // renderSearchPanel(res);
-    renderSearchPanel(transform.transformObjUa(res));
+    renderSearchPanel(transformObj(res, lang));
   });
   console.log(evt.target.value, refs.searchInput.value);
 }
