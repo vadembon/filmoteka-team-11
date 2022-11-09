@@ -7,7 +7,7 @@ const apiRequest = new FilmApiService();
 const genresSelect = new GenresLanguage();
 
 refs.uaLanguageBtn.addEventListener('click', onClickUa);
-refs.ukLanguageBtn.addEventListener('click', onClickUk);
+refs.enLanguageBtn.addEventListener('click', onClickUk);
 
 function onClickUa() {
   localStorage.setItem('language', 'uk-UA');

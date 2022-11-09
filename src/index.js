@@ -7,7 +7,7 @@ import './js/render_genres';
 import renderModal from './js/render_film_modal';
 import './js/pagination.js';
 import './js/languageSwitcher';
-import './js/library';
+import './js/switch_home_library';
 
 // renderMovieList();
 // const apiRequest = new FilmApiService();
