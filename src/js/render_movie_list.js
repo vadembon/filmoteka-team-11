@@ -8,7 +8,7 @@ const transform = new transformObj();
 const movieArr = apiRequest.fetchTrendingMovies();
 
 movieArr.then(res => {
-  render(transform.transformObj(res));
+  render(transform.transformObjUk(res));
 });
 
 export default function render(movieArr) {

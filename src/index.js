@@ -11,8 +11,7 @@ import idToGenre from './js/idToGenre';
 import renderModal from './js/render_film_modal';
 import './js/pagination.js';
 // import { renderM } from './js/example';
-
-refs.searchInput.setAttribute('placeholder', 'Пошук фильмів');
+import * as languageSwitch from './js/languageSwitcher';
 
 console.log(
   refs.headerLibrary.innerHTML,

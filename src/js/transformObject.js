@@ -4,7 +4,7 @@ import comingSoon from '../images/coming_soon.jpg';
 export default class transformObj {
   constructor() {}
 
-  transformObj(arrObj) {
+  transformObjUk(arrObj) {
     arrObj.map(el => {
       el.genre_ids = idToGenre(el.genre_ids);
       el.release_date = el.release_date.slice(0, 4);
