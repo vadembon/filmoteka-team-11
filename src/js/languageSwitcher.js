@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import FilmApiService from './movie_database_api';
-import { renderFilmList } from './render_movie_list';
+import { renderTrendingList } from './render_movie_list';
 import GenresLanguage from './render_genres';
 
 const apiRequest = new FilmApiService();
@@ -19,7 +19,7 @@ function onClickUa() {
   refs.themeLight.textContent = 'світла';
   apiRequest.language = localStorage.getItem('language');
   console.log(localStorage.getItem('language'));
-  renderFilmList(apiRequest.language);
+  renderTrendingList(apiRequest.language);
 }
 
 function onClickUk() {
@@ -31,5 +31,5 @@ function onClickUk() {
   refs.themeDark.textContent = 'dark';
   refs.themeLight.textContent = 'light';
   apiRequest.language = localStorage.getItem('language');
-  renderFilmList(apiRequest.language);
+  renderTrendingList(apiRequest.language);
 }

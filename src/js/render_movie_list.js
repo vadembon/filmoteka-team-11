@@ -3,10 +3,13 @@ import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import transformObj from './transformObject';
 
-export function renderFilmList(lang, page) {
+renderTrendingList();
+
+export function renderTrendingList() {
+  const lang = localStorage.getItem('language');
   const apiRequest = new FilmApiService();
   apiRequest.language = lang;
-  apiRequest.pageNumber = page;
+  // apiRequest.pageNumber = page;
 
   console.log('page', apiRequest.pageNumber);
 
@@ -23,5 +26,3 @@ export function renderList(movieArr) {
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
   refs.searchBtn.setAttribute('disabled', 'disabled');
 }
-
-renderFilmList('en-US');

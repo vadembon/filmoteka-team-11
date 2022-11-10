@@ -1,7 +1,6 @@
 import axios from 'axios';
 // import './js/pagination.js';
 
-// const axios = require('axios');
 const API_KEY = 'ec34284630374f864ce40bf102f3f73e';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
@@ -9,21 +8,21 @@ export default class FilmApiService {
   constructor() {
     this.searchQuery = '';
     this.pageNumber = 1;
-    this.genre = 'comedy';
-    this.language = 'en-US';
+    this.language = '';
   }
 
   async fetchTrendingMovies() {
     const url = `${BASE_URL}/trending/movie/day?`;
+    const searchParams = new URLSearchParams({
+      api_key: API_KEY,
+      language: this.language,
+      page: this.pageNumber,
+    });
 
     try {
-      const trendingData = await axios.get(url, {
-        params: {
-          api_key: API_KEY,
-          language: this.language,
-          page: this.pageNumber,
-        },
-      });
+      console.log('apiPage before', this.pageNumber);
+      const trendingData = await axios.get(`${url}${searchParams}`);
+      console.log('apiPage after', this.pageNumber);
       return trendingData.data.results;
     } catch {
       error => console.log(error);
@@ -113,7 +112,18 @@ export default class FilmApiService {
     this.searchQuery = newQuery;
   }
 
-  set page(newPage) {
-    this.pageNumber = newPage;
-  }
+  // get pageNumber() {
+  //   return this.pageNumber;
+  // }
+
+  // set pageNumber(newPage) {
+  //   this.pageNumber = newPage;
+  // }
+
+  // get language() {
+  //   return this.language;
+  // }
+  // set language(newLang) {
+  //   this.language = newLang;
+  // }
 }
