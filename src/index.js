@@ -11,6 +11,7 @@ import './js/pagination.js';
 // import './js/languageSwitcher';
 import './js/switch_home_library';
 import './js/scrollToTop';
+import './js/slider';
 
 // renderMovieList();
 // const apiRequest = new FilmApiService();
