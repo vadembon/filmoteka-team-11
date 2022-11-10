@@ -7,9 +7,9 @@ const apiRequest = new FilmApiService();
 const genresSelect = new GenresLanguage();
 
 refs.uaLanguageBtn.addEventListener('click', onClickUa);
-refs.enLanguageBtn.addEventListener('click', onClickUk);
+refs.enLanguageBtn.addEventListener('click', onClickEn);
 
-function onClickUa() {
+export function onClickUa() {
   localStorage.setItem('language', 'uk-UA');
   genresSelect.renderGenresUa();
   refs.searchInput.setAttribute('placeholder', 'Пошук фильмів');
@@ -19,10 +19,10 @@ function onClickUa() {
   refs.themeLight.textContent = 'світла';
   apiRequest.language = localStorage.getItem('language');
   console.log(localStorage.getItem('language'));
-  renderTrendingList(apiRequest.language);
+  renderTrendingList();
 }
 
-function onClickUk() {
+export function onClickEn() {
   localStorage.setItem('language', 'en-US');
   genresSelect.renderGenresUk();
   refs.searchInput.setAttribute('placeholder', 'Movie search');
@@ -31,5 +31,5 @@ function onClickUk() {
   refs.themeDark.textContent = 'dark';
   refs.themeLight.textContent = 'light';
   apiRequest.language = localStorage.getItem('language');
-  renderTrendingList(apiRequest.language);
+  renderTrendingList();
 }

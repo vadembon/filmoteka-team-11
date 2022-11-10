@@ -8,7 +8,7 @@ export default class FilmApiService {
   constructor() {
     this.searchQuery = '';
     this.pageNumber = 1;
-    this.language = '';
+    this.language = localStorage.getItem('language');
   }
 
   async fetchTrendingMovies() {

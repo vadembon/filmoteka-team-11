@@ -3,8 +3,6 @@ import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import transformObj from './transformObject';
 
-renderTrendingList();
-
 export function renderTrendingList() {
   const lang = localStorage.getItem('language');
   const apiRequest = new FilmApiService();

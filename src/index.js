@@ -1,4 +1,6 @@
-import './js/render_movie_list';
+import './js/render_site';
+
+// import './js/render_movie_list';
 
 import './js/footer_modal';
 import './js/render_search';
