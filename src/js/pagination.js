@@ -24,6 +24,23 @@ paginationRef.addEventListener('click', onPaginationClick);
 
 let currentPage = 1;
 
+function firstPage() {
+  currentPage = 1;
+  btn1Ref.textContent = 1;
+  btn2Ref.textContent = 2;
+  btn3Ref.textContent = 3;
+  btn4Ref.textContent = 4;
+  btn5Ref.textContent = 5;
+  leftArrowRef.hidden = true;
+  prevDotsRef.hidden = true;
+  firstPageRef.hidden = true;
+  btn1Ref.classList.add('pagination--current');  
+  btn2Ref.classList.remove('pagination--current');
+  btn3Ref.classList.remove('pagination--current');
+  btn4Ref.classList.remove('pagination--current');
+  btn5Ref.classList.remove('pagination--current');
+}
+
 let btns = document.querySelectorAll('.pagination-button');
 
 prevDotsRef.hidden = true;
