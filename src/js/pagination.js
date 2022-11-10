@@ -1,8 +1,9 @@
 import FilmApiService from './movie_database_api';
-import renderFilmList from './render_movie_list';
+import { renderList } from './render_movie_list';
+import transformObj from './transformObject';
 
 const apiRequest = new FilmApiService();
-const lang = localStorage.getItem('language');
+// const lang = localStorage.getItem('language');
 
 const btn1Ref = document.querySelector('[data-index="1"]');
 const btn2Ref = document.querySelector('[data-index="2"]');
@@ -33,9 +34,17 @@ function onPaginationClick(event) {
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
       currentPage = Number(event.target.textContent);
-      console.log(currentPage);
+      gallery.innerHTML = '';
+      const funct = apiRequest.fetchTrendingMovies();
+      const lang = localStorage.getItem('language');
       apiRequest.pageNumber = currentPage;
-      renderFilmList(lang);
+      funct.then(res => {
+        console.log('Pagination', res);
+        renderList(transformObj(res, lang));
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      console.log('currentPage: ', currentPage, apiRequest.pageNumber);
     }
 
     prevDotsRef.hidden = true;
@@ -111,13 +120,6 @@ function onPaginationClick(event) {
       afterDotsRef.hidden = false;
       lastPageRef.hidden = false;
     }
-
-    gallery.innerHTML = '';
-    apiRequest.pageNumber = currentPage;
-    renderFilmList(lang, currentPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    console.log('currentPage: ', currentPage, apiRequest.pageNumber);
   }
   // movieArr(currentPage).then(res => render(res));
 }
