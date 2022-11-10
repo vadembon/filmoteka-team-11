@@ -21,6 +21,7 @@ export default class FilmApiService {
 
     try {
       console.log('apiPage before', this.pageNumber);
+      console.log('url', url);
       const trendingData = await axios.get(`${url}${searchParams}`);
       console.log('apiPage after', this.pageNumber);
       return trendingData.data.results;
@@ -51,6 +52,7 @@ export default class FilmApiService {
     const url = `${BASE_URL}/search/movie/?`;
 
     try {
+      console.log('url', url);
       const searchingData = await axios.get(url, {
         params: {
           api_key: API_KEY,
