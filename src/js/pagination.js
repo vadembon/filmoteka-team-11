@@ -34,7 +34,7 @@ function firstPage() {
   leftArrowRef.hidden = true;
   prevDotsRef.hidden = true;
   firstPageRef.hidden = true;
-  btn1Ref.classList.add('pagination--current');  
+  btn1Ref.classList.add('pagination--current');
   btn2Ref.classList.remove('pagination--current');
   btn3Ref.classList.remove('pagination--current');
   btn4Ref.classList.remove('pagination--current');
@@ -51,15 +51,6 @@ function onPaginationClick(event) {
   if (event.target.tagName === 'BUTTON') {
     if (Number(event.target.textContent)) {
       currentPage = Number(event.target.textContent);
-      gallery.innerHTML = '';
-      // const funct = apiRequest.fetchTrendingMovies();
-      const lang = localStorage.getItem('language');
-      apiRequest.pageNumber = currentPage;
-      apiRequest.fetchTrendingMovies().then(res => {
-        // console.log('Pagination', res);
-        renderList(transformObj(res, lang));
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // console.log('currentPage: ', currentPage, apiRequest.pageNumber);
     }
@@ -138,6 +129,16 @@ function onPaginationClick(event) {
       lastPageRef.hidden = false;
     }
   }
+  gallery.innerHTML = '';
+  // const funct = apiRequest.fetchTrendingMovies();
+  const lang = localStorage.getItem('language');
+  apiRequest.pageNumber = currentPage;
+  apiRequest.fetchTrendingMovies().then(res => {
+    // console.log('Pagination', res);
+    renderList(transformObj(res, lang));
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   // movieArr(currentPage).then(res => render(res));
 }
 
