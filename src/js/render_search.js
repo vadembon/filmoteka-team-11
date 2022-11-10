@@ -1,4 +1,4 @@
-import renderList from './render_movie_list';
+import { renderList } from './render_movie_list';
 import searchPanel from '../templates/search_panel.hbs';
 import FilmApiService from './movie_database_api';
 import transformObj from './transformObject';
@@ -8,7 +8,7 @@ import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
 const apiRequest = new FilmApiService();
-const transform = new transformObj();
+
 const lang = localStorage.getItem('language');
 
 refs.searchForm.addEventListener('submit', onSubmit);
@@ -19,6 +19,7 @@ function onSubmit(evt) {
   console.log(evt, refs.searchInput.value);
   apiRequest.searchQuery = refs.searchInput.value;
   const searchRes = apiRequest.fetchSearchMovie();
+  const lang = localStorage.getItem('language');
 
   searchRes.then(res => {
     console.log(res);
@@ -26,7 +27,7 @@ function onSubmit(evt) {
       Notiflix.Notify.failure('Sorry, film is not found. Please try again.');
       return;
     }
-    renderList(transform.transformObjUa(res));
+    renderList(transformObj(res, lang));
     refs.searchInput.value = '';
     refs.searchList.innerHTML = '';
   });

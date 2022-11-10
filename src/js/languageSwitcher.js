@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import FilmApiService from './movie_database_api';
-import renderFilmList from './render_movie_list';
+import { renderFilmList } from './render_movie_list';
 import GenresLanguage from './render_genres';
 
 const apiRequest = new FilmApiService();

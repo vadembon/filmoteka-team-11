@@ -1,4 +1,4 @@
-import renderList from './render_movie_list';
+import { renderList } from './render_movie_list';
 import { refs } from './refs';
 import FilmApiService from './movie_database_api';
 import transformObj from './transformObject';

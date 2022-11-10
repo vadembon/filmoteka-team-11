@@ -3,7 +3,7 @@ import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import transformObj from './transformObject';
 
-export default function renderFilmList(lang, page) {
+export function renderFilmList(lang, page) {
   const apiRequest = new FilmApiService();
   apiRequest.language = lang;
   apiRequest.pageNumber = page;
@@ -13,11 +13,11 @@ export default function renderFilmList(lang, page) {
   const movieArr = apiRequest.fetchTrendingMovies();
 
   movieArr.then(res => {
-    render(transformObj(res, lang));
+    renderList(transformObj(res, lang));
     console.log(apiRequest.language);
   });
 }
-function render(movieArr) {
+export function renderList(movieArr) {
   refs.filmList.innerHTML = '';
   const markup = renderFilmCart(movieArr);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
