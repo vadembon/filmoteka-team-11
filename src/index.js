@@ -4,11 +4,11 @@ import './js/render_site';
 
 import './js/footer_modal';
 import './js/render_search';
-import './js/render_genres';
+// import './js/render_genres';
 
-import renderModal from './js/render_film_modal';
+import './js/render_film_modal';
 import './js/pagination.js';
-import './js/languageSwitcher';
+// import './js/languageSwitcher';
 import './js/switch_home_library';
 
 // renderMovieList();
