@@ -7,7 +7,6 @@ import genreSelectMarkupUa from '../templates/filter_genres_ua.hbs';
 
 refs.genreSelect.addEventListener('change', onChange);
 const apiRequest = new FilmApiService();
-const lang = localStorage.getItem('language');
 console.log('genre');
 
 export default class GenresLanguage {
@@ -30,7 +29,7 @@ export default class GenresLanguage {
 function onChange(evt) {
   refs.filmList.innerHTML = '';
   const genreId = evt.target.value;
-
+  const lang = localStorage.getItem('language');
   const genred = apiRequest.fetchMoviesWithGenre(genreId, lang);
   console.log('genreLang', apiRequest.language);
   genred.then(res => renderList(transformObj(res, lang)));
