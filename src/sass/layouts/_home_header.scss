@@ -1,10 +1,11 @@
 .header__section {
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 92px;
+  padding-bottom: 72px;
   padding-top: 42px;
   opacity: 0.9;
   background-image: url(../images/header-background-img-home/header-bcgrd-mobile1x.jpg);
+  
   background-repeat: no-repeat;
   background-size: cover;
   @media (min-device-pixel-ratio: 2),
@@ -15,7 +16,7 @@
 
   @include tablet {
     padding-top: 40px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
     background-image: url(../images/header-background-img-home/header-bcgrd-tablet1x.jpg);
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -216,7 +217,6 @@ input:checked + .slider {
 .header_button-leng {
   background-color: transparent;
   border: none;
-  border-bottom: 3px solid #ff001b;
   color: #ffffff;
   cursor: pointer;
 }
@@ -234,4 +234,5 @@ input:checked + .slider {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-top: 20px;
 }
