@@ -12,7 +12,7 @@ export const refs = {
   headerLibrBtnWatched: document.querySelector('#watched'),
   headerLibrBtnQueue: document.querySelector('#queue'),
   librButtons: document.querySelector('.header-library__btn-list'),
-  // styleToggle: document.querySelector('.styleToggle'),
+  themeToggle: document.querySelector('#switch'),
 
   filmList: document.querySelector('.collection'),
   genreSelect: document.querySelector('.js-genre-filter'),
