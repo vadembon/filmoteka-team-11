@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Notiflix from 'notiflix';
 // import './js/pagination.js';
 
 const API_KEY = 'ec34284630374f864ce40bf102f3f73e';
@@ -25,36 +26,34 @@ export default class FilmApiService {
       const trendingData = await axios.get(`${url}${searchParams}`);
       // console.log('apiPage after', this.pageNumber);
       return trendingData.data.results;
-    } catch {
-      error => console.log(error);
+    } catch (error) {
+      console.log(error);
+      Notiflix.failure('Oops, an error occurred');
     }
   }
 
   async fetchMoviesWithGenre(genre, lang) {
     try {
       console.log('Genre', genre, 'lang', lang);
-      const url = `${BASE_URL}/discover/movie?`;
-      const trendingData = await axios.get(url, {
-        params: {
-          api_key: API_KEY,
-          language: lang,
-          with_genres: genre,
-        },
-      });
+      const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=${lang}&winh_genres=${genre}`;
+      const trendingData = await axios.get(url);
       return trendingData.data.results;
-    } catch {
-      error => console.log(error);
+    } catch (error) {
+      console.log(error);
+      Notiflix.failure('Oops, an error occurred');
     }
   }
 
   async fetchSearchMovie() {
     try {
-      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${this.language}&page=${this.pageNumber}&query=${this.searchQuery}`;
+      const lang = localStorage.getItem('language');
+      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}&query=${this.searchQuery}`;
       console.log('url', url);
       const searchingData = await axios.get(url);
       return searchingData.data.results;
-    } catch {
-      error => console.log(error);
+    } catch (error) {
+      console.log(error);
+      Notiflix.failure('Oops, an error occurred');
     }
   }
 
@@ -65,8 +64,9 @@ export default class FilmApiService {
         params: { api_key: API_KEY, language: this.language },
       });
       return details.data;
-    } catch {
-      error => console.log(error);
+    } catch (error) {
+      console.log(error);
+      Notiflix.failure('Oops, an error occurred');
     }
   }
 

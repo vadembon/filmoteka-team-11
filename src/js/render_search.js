@@ -9,8 +9,6 @@ import Notiflix from 'notiflix';
 
 const apiRequest = new FilmApiService();
 
-const lang = localStorage.getItem('language');
-
 console.log('renderSearch');
 
 refs.searchForm.addEventListener('submit', onSubmit);
@@ -37,26 +35,26 @@ function onSubmit(evt) {
 
 function onInput(evt) {
   evt.preventDefault();
+  const lang = localStorage.getItem('language');
   refs.searchBtn.removeAttribute('disabled');
-  // apiRequest.searchQuery = evt.target.value;
-  // const searchRes = apiRequest.fetchSearchMovie();
-  // searchRes.then(res => {
-  //   console.log(res);
-  //   if (!res) {
-  //     Notiflix.Notify.failure(' Please type something.');
-  //     refs.searchInput.value = '';
-  //     refs.searchList.innerHTML = '';
-  //     return;
-  //   }
-  //   if (!res.length) {
-  //     Notiflix.Notify.failure('Sorry, film is not found. Please try again.');
-  //     return;
-  //   }
+  apiRequest.searchQuery = evt.target.value;
+  const searchRes = apiRequest.fetchSearchMovie();
+  searchRes.then(res => {
+    console.log(res);
+    if (!res) {
+      Notiflix.Notify.failure(' Please type something.');
+      refs.searchInput.value = '';
+      refs.searchList.innerHTML = '';
+      return;
+    }
+    if (!res.length) {
+      Notiflix.Notify.failure('Sorry, film is not found. Please try again.');
+      return;
+    }
 
-  //   // renderSearchPanel(res);
-  //   renderSearchPanel(transformObj(res, lang));
-  // });
-  // console.log(evt.target.value, refs.searchInput.value);
+    renderSearchPanel(transformObj(res, lang));
+  });
+  console.log(evt.target.value, refs.searchInput.value);
 }
 
 function renderSearchPanel(arrObj) {
