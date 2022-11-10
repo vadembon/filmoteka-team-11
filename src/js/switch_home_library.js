@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import renderFilmList from './render_movie_list';
+import { renderFilmList } from './render_movie_list';
 
 refs.headerHome.addEventListener('click', switchToHome);
 refs.headerLibrary.addEventListener('click', switchToLibrary);
