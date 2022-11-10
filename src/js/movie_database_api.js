@@ -12,33 +12,27 @@ export default class FilmApiService {
   }
 
   async fetchTrendingMovies() {
-    const url = `${BASE_URL}/trending/movie/day?`;
-    const searchParams = new URLSearchParams({
-      api_key: API_KEY,
-      language: this.language,
-      page: this.pageNumber,
-    });
-
     try {
-      console.log('apiPage before', this.pageNumber);
-      console.log('url', url);
-      const trendingData = await axios.get(`${url}${searchParams}`);
-      console.log('apiPage after', this.pageNumber);
+      const url = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=${this.language}&page=${this.pageNumber}`;
+
+      // console.log('apiPage before', this.pageNumber);
+      // console.log('url', url);
+      const trendingData = await axios.get(url);
+      // console.log('apiPage after', this.pageNumber);
       return trendingData.data.results;
     } catch {
       error => console.log(error);
     }
   }
 
-  async fetchMoviesWithGenre(genre) {
-    console.log('Genre', genre);
-    const url = `${BASE_URL}/discover/movie?`;
-
+  async fetchMoviesWithGenre(genre, lang) {
     try {
+      console.log('Genre', genre, 'lang', lang);
+      const url = `${BASE_URL}/discover/movie?`;
       const trendingData = await axios.get(url, {
         params: {
           api_key: API_KEY,
-          language: this.language,
+          language: lang,
           with_genres: genre,
         },
       });
@@ -49,17 +43,10 @@ export default class FilmApiService {
   }
 
   async fetchSearchMovie() {
-    const url = `${BASE_URL}/search/movie/?`;
-
     try {
+      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${this.language}&page=${this.pageNumber}&query=${this.searchQuery}`;
       console.log('url', url);
-      const searchingData = await axios.get(url, {
-        params: {
-          api_key: API_KEY,
-          language: this.language,
-          query: this.searchQuery,
-        },
-      });
+      const searchingData = await axios.get(url);
       return searchingData.data.results;
     } catch {
       error => console.log(error);
@@ -67,8 +54,8 @@ export default class FilmApiService {
   }
 
   async fetchMoviesDetails(id) {
-    const url = `${BASE_URL}/movie/${id}?`;
     try {
+      const url = `${BASE_URL}/movie/${id}?`;
       const details = await axios.get(url, {
         params: { api_key: API_KEY, language: this.language },
       });

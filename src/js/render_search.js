@@ -11,6 +11,8 @@ const apiRequest = new FilmApiService();
 
 const lang = localStorage.getItem('language');
 
+console.log('renderSearch');
+
 refs.searchForm.addEventListener('submit', onSubmit);
 refs.searchInput.addEventListener('input', debounce(onInput, 350));
 

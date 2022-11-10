@@ -9,8 +9,8 @@ export const refs = {
   headerLibrary: document.querySelector('#library'),
   headerHome: document.querySelector('#home'),
 
-  // headerLibrBtnWatched: document.querySelector('#watched'),
-  // headerLibrBtnQueue: document.querySelector('#queue'),
+  headerLibrBtnWatched: document.querySelector('#watched'),
+  headerLibrBtnQueue: document.querySelector('#queue'),
   librButtons: document.querySelector('.header-library__btn-list'),
   // styleToggle: document.querySelector('.styleToggle'),
 

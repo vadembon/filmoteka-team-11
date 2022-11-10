@@ -35,16 +35,16 @@ function onPaginationClick(event) {
     if (Number(event.target.textContent)) {
       currentPage = Number(event.target.textContent);
       gallery.innerHTML = '';
-      const funct = apiRequest.fetchTrendingMovies();
+      // const funct = apiRequest.fetchTrendingMovies();
       const lang = localStorage.getItem('language');
       apiRequest.pageNumber = currentPage;
-      funct.then(res => {
-        console.log('Pagination', res);
+      apiRequest.fetchTrendingMovies().then(res => {
+        // console.log('Pagination', res);
         renderList(transformObj(res, lang));
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      console.log('currentPage: ', currentPage, apiRequest.pageNumber);
+      // console.log('currentPage: ', currentPage, apiRequest.pageNumber);
     }
 
     prevDotsRef.hidden = true;
