@@ -30,7 +30,7 @@ export default class FilmApiService {
   }
 
   async fetchMoviesWithGenre(genre) {
-    console.log(genre);
+    console.log('Genre', genre);
     const url = `${BASE_URL}/discover/movie?`;
 
     try {
