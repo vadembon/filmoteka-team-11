@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { renderFilmList } from './render_movie_list';
+import { renderTrendingList } from './render_movie_list';
 
 refs.headerHome.addEventListener('click', switchToHome);
 refs.headerLibrary.addEventListener('click', switchToLibrary);
@@ -7,7 +7,7 @@ refs.headerLibrary.addEventListener('click', switchToLibrary);
 function switchToHome(evt) {
   evt.preventDefault();
   refs.filmList.innerHTML = '';
-  renderFilmList(localStorage.getItem('language'));
+  renderTrendingList(localStorage.getItem('language'));
   refs.headerSection.classList.remove('header-library');
   refs.librButtons.classList.add('visually-hidden');
   refs.headerSection.classList.add('header__section');
