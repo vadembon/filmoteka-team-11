@@ -13,11 +13,16 @@ export default class FilmApiService {
 
   async fetchTrendingMovies() {
     try {
-      const url = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=${this.language}&page=${this.pageNumber}`;
+      const url = `${BASE_URL}/trending/movie/day?`;
+      const searchParams = new URLSearchParams({
+        api_key: API_KEY,
+        language: this.language,
+        page: this.pageNumber,
+      });
 
       // console.log('apiPage before', this.pageNumber);
       // console.log('url', url);
-      const trendingData = await axios.get(url);
+      const trendingData = await axios.get(`${url}${searchParams}`);
       // console.log('apiPage after', this.pageNumber);
       return trendingData.data.results;
     } catch {
