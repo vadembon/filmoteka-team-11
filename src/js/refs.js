@@ -5,6 +5,8 @@ export const refs = {
   searchBtn: document.querySelector('.header__form-submit-btn'),
   searchList: document.querySelector('.search-form-list'),
 
+  paginationRef: document.querySelector('.pagination-container'),
+
   headerSection: document.querySelector('.header__section'),
   headerLibrary: document.querySelector('#library'),
   headerHome: document.querySelector('#home'),
