@@ -42,9 +42,8 @@ async function render(data) {
 const glide = new Glide('.glide', {
   type: 'slider',
   startAt: 0,
-  perView: 8,
-  autoplay: 5000,
-  animationDuration: 2000,
+  perView: 10,
+  autoplay: 3000,
   hoverpause: true,
   bound: true,
   breakpoints: {
