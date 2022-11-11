@@ -7,10 +7,10 @@ refs.headerLibrary.addEventListener('click', switchToLibrary);
 function switchToHome(evt) {
   evt.preventDefault();
   refs.filmList.innerHTML = '';
-  renderTrendingList(localStorage.getItem('language'));
+  renderTrendingList();
   refs.headerSection.classList.remove('header-library');
-  refs.librButtons.classList.add('visually-hidden');
   refs.headerSection.classList.add('header__section');
+  refs.librButtons.classList.add('visually-hidden');
   refs.searchForm.style.display = 'block';
   refs.themeToggle.style.display = 'flex';
   refs.genreSelect.style.display = 'flex';
@@ -24,9 +24,9 @@ function switchToLibrary(evt) {
   evt.preventDefault();
   refs.filmList.innerHTML = '';
   refs.headerSection.classList.remove('header__section');
+  refs.headerSection.classList.add('header-library');
   refs.searchForm.style.display = 'none';
   refs.librButtons.classList.remove('visually-hidden');
-  refs.headerSection.classList.add('header-library');
   refs.themeToggle.style.display = 'none';
   refs.genreSelect.style.display = 'none';
   refs.uaLanguageBtn.style.display = 'none';

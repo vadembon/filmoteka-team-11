@@ -2,7 +2,6 @@
   background-color: #000001;
 }
 
-
 .header__section {
   margin-left: auto;
   margin-right: auto;
@@ -11,41 +10,34 @@
   opacity: 0.9;
 
   background-image: url(../images/header-background-img-home/header-bcgrd-mobile1x.jpg);
-  
+
   background-repeat: no-repeat;
   background-size: cover;
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    
     background-image: url(../images/header-background-img-home/header-bcgrd-mobile2x.jpg);
-    
   }
 
   @include tablet {
     padding-top: 40px;
-    padding-bottom: 60px;
-   
+    padding-bottom: 40px;
+
     background-image: url(../images/header-background-img-home/header-bcgrd-tablet1x.jpg);
-    
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-       
       background-image: url(../images/header-background-img-home/header-bcgrd-tablet2x.jpg);
-     
     }
   }
   @include desktop {
-  
     background-image: url(../images/header-background-img-home/header-bcgrd-desktop1x.jpg);
-    
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-    
       background-image: url(../images/header-background-img-home/header-bcgrd-desktop2x.jpg);
-     
     }
   }
 }
@@ -253,8 +245,50 @@ input:checked + .slider {
   margin-top: 20px;
 }
 
-
-select, option{
+select,
+option {
   background-color: rgb(41, 40, 40);
   color: #ffffff;
+}
+
+// ////////////////  SEARH PANEL   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+.search-form-list {
+  max-height: 200px;
+  background-color: #303030df;
+  position: absolute;
+  width: 100%;
+  z-index: 99999;
+  padding: 0 20px;
+  overflow: auto;
+}
+
+.search-form-list__item {
+  // border: 1px solid #ff001b;
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.search-form-list__thumb {
+  margin-right: 20px;
+  width: 37px;
+  height: 50px;
+}
+
+.search-form-list__img {
+  border-radius: 5px;
+  height: 100%;
+}
+
+.search-form-list__info {
+}
+
+.search-form-list__title {
+  margin-bottom: 10px;
+}
+
+.search-form-list__date {
 }

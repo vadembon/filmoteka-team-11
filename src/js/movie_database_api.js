@@ -51,6 +51,7 @@ export default class FilmApiService {
   }
 
   async fetchSearchMovie() {
+    if (this.query === '') return;
     try {
       const lang = localStorage.getItem('language');
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}&query=${this.searchQuery}`;
