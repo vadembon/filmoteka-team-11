@@ -12,6 +12,15 @@ import './js/pagination.js';
 import './js/switch_home_library';
 import './js/scrollToTop';
 import './js/slider';
+window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+
+
+       loader.classList.add("loader-hidden")
+
+   
+    })
+
 
 // renderMovieList();
 // const apiRequest = new FilmApiService();
