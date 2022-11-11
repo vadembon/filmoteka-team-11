@@ -1,9 +1,10 @@
-import FilmApiService from './movie_database_api';
-import { renderList } from './render_movie_list';
-import transformObj from './transformObject';
+// import FilmApiService from './movie_database_api';
+// import { renderList } from './render_movie_list';
+// import transformObj from './transformObject';
 
-const apiRequest = new FilmApiService();
-// const lang = localStorage.getItem('language');
+// const apiRequest = new FilmApiService();
+// const fetchFunctions = apiRequest.fetchMoviesWithGenre.bind(apiRequest);
+// // const lang = localStorage.getItem('language');
 
 const btn1Ref = document.querySelector('[data-index="1"]');
 const btn2Ref = document.querySelector('[data-index="2"]');
@@ -129,18 +130,22 @@ function onPaginationClick(event) {
       lastPageRef.hidden = false;
     }
   }
-  gallery.innerHTML = '';
-  // const funct = apiRequest.fetchTrendingMovies();
-  const lang = localStorage.getItem('language');
-  apiRequest.pageNumber = currentPage;
-  apiRequest.fetchTrendingMovies().then(res => {
-    // console.log('Pagination', res);
-    renderList(transformObj(res, lang));
-  });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // movieArr(currentPage).then(res => render(res));
+  // paginationRender();
 }
+
+// export function paginationRender(fetchFunction) {
+//   // gallery.innerHTML = '';
+//   // const funct = apiRequest.fetchTrendingMovies();
+//   const lang = localStorage.getItem('language');
+//   console.log('Pagination', fetchFunctions, apiRequest.genre);
+//   apiRequest.pageNumber = currentPage;
+//   fetchFunction().then(res => {
+//     renderList(transformObj(res, lang));
+//   });
+//   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+//   // movieArr(currentPage).then(res => render(res));
+// }
 
 let pageSize = 9;
 
@@ -155,4 +160,4 @@ function defineResultsPerPage() {
   return pageSize;
 }
 
-export { currentPage, defineResultsPerPage };
+export { currentPage, defineResultsPerPage, firstPage };

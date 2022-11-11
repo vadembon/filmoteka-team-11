@@ -58,7 +58,7 @@ adddQueueBtn.addEventListener('click', onClickQueueBtn);
 addWatchedBtn.addEventListener('click', onClickWotchedBtn);
 function onClickWotchedBtn(evt) {
   //   render(details);
-  modal.removeAttribute('hidden');
+  refs.modal.removeAttribute('hidden');
   const movie = apiRequest.fetchMoviesDetails('829280');
   movie.then(res => render(res));
   function render(movie) {

@@ -10,6 +10,7 @@ export default class FilmApiService {
     this.searchQuery = '';
     this.pageNumber = 1;
     this.language = localStorage.getItem('language');
+    this.genre = '';
   }
 
   async fetchTrendingMovies() {
@@ -32,10 +33,11 @@ export default class FilmApiService {
     }
   }
 
-  async fetchMoviesWithGenre(genre, lang) {
+  async fetchMoviesWithGenre() {
     try {
-      console.log('Genre', genre, 'lang', lang);
-      const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=${lang}&winh_genres=${genre}`;
+      console.log('genreLang', this.language, this.genre);
+      const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=${this.language}&with_genres=${this.genre}&page=${this.pageNumber}`;
+      console.log(url);
       const trendingData = await axios.get(url);
       return trendingData.data.results;
     } catch (error) {
