@@ -1,9 +1,15 @@
+.header {
+  background-color: #000001;
+}
+
+
 .header__section {
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 72px;
   padding-top: 42px;
   opacity: 0.9;
+
   background-image: url(../images/header-background-img-home/header-bcgrd-mobile1x.jpg);
   
   background-repeat: no-repeat;
@@ -11,25 +17,35 @@
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
+    
     background-image: url(../images/header-background-img-home/header-bcgrd-mobile2x.jpg);
+    
   }
 
   @include tablet {
     padding-top: 40px;
     padding-bottom: 60px;
+   
     background-image: url(../images/header-background-img-home/header-bcgrd-tablet1x.jpg);
+    
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
+       
       background-image: url(../images/header-background-img-home/header-bcgrd-tablet2x.jpg);
+     
     }
   }
   @include desktop {
+  
     background-image: url(../images/header-background-img-home/header-bcgrd-desktop1x.jpg);
+    
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
+    
       background-image: url(../images/header-background-img-home/header-bcgrd-desktop2x.jpg);
+     
     }
   }
 }
@@ -236,3 +252,4 @@ input:checked + .slider {
   justify-content: space-around;
   margin-top: 20px;
 }
+.filters__item {  background-color: #000;    border-radius: 5px;  padding: 5px;  cursor: pointer;}
