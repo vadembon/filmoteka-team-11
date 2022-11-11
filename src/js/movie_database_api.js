@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Notiflix from 'notiflix';
+import Notiflix, { Notify } from 'notiflix';
 // import './js/pagination.js';
 
 const API_KEY = 'ec34284630374f864ce40bf102f3f73e';
@@ -24,8 +24,10 @@ export default class FilmApiService {
 
       // console.log('apiPage before', this.pageNumber);
       // console.log('url', url);
+      Notiflix.Loading.standard();
       const trendingData = await axios.get(`${url}${searchParams}`);
       // console.log('apiPage after', this.pageNumber);
+      Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
       console.log(error);
@@ -38,7 +40,9 @@ export default class FilmApiService {
       console.log('genreLang', this.language, this.genre);
       const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=${this.language}&with_genres=${this.genre}&page=${this.pageNumber}`;
       console.log(url);
+      Notiflix.Loading.standard();
       const trendingData = await axios.get(url);
+      Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
       console.log(error);
@@ -51,7 +55,9 @@ export default class FilmApiService {
       const lang = localStorage.getItem('language');
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}&query=${this.searchQuery}`;
       console.log('url', url);
+      Notiflix.Loading.standard();
       const searchingData = await axios.get(url);
+      Notiflix.Loading.remove();
       return searchingData.data.results;
     } catch (error) {
       console.log(error);
@@ -62,9 +68,11 @@ export default class FilmApiService {
   async fetchMoviesDetails(id) {
     try {
       const url = `${BASE_URL}/movie/${id}?`;
+      Notiflix.Loading.standard();
       const details = await axios.get(url, {
         params: { api_key: API_KEY, language: this.language },
       });
+      Notiflix.Loading.remove();
       return details.data;
     } catch (error) {
       console.log(error);
