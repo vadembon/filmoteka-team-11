@@ -252,4 +252,9 @@ input:checked + .slider {
   justify-content: space-around;
   margin-top: 20px;
 }
-.filters__item {  background-color: #000;    border-radius: 5px;  padding: 5px;  cursor: pointer;}
+
+
+select, option{
+  background-color: rgb(41, 40, 40);
+  color: #ffffff;
+}
