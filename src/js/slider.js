@@ -1,3 +1,5 @@
+import Glide from '@glidejs/glide';
+
 const refs = {
   lisrTopFilms: document.querySelector('.glide__slides'),
   item: document.querySelectorAll('.glide__slide'),
@@ -37,13 +39,7 @@ async function render(data) {
   });
 }
 
-import Glide, {
-  Controls,
-  Breakpoints,
-  Autoplay,
-} from '@glidejs/glide/dist/glide.modular.esm';
-
-new Glide('.glide', {
+const glide = new Glide('.glide', {
   type: 'slider',
   startAt: 0,
   perView: 8,
@@ -65,4 +61,5 @@ new Glide('.glide', {
       perView: 2,
     },
   },
-}).mount({ Controls, Breakpoints, Autoplay });
+});
+glide.mount();
