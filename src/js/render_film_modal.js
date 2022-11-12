@@ -30,8 +30,9 @@ refs.filmList.addEventListener('click', onClick);
 function onClick(evt) {
   evt.preventDefault();
   console.log(evt.path[2].id);
+  apiRequest.language = localStorage.getItem('language');
   const details = apiRequest.fetchMoviesDetails(evt.path[2].id);
-  console.log(details);
+  // console.log(details);
   details.then(res => render(res));
 }
 
@@ -67,7 +68,7 @@ refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
 const watched = JSON.parse(localStorage.getItem('watched'));
 console.log('watch', watched);
 
-const arrCardWatched = watched ? watched : [''];
+const arrCardWatched = watched ? watched : [];
 console.log('arrCardWatch', arrCardWatched);
 
 function onClickAddWatchedBtn(evt) {
@@ -82,7 +83,7 @@ function onClickAddWatchedBtn(evt) {
 const queue = JSON.parse(localStorage.getItem('queue'));
 console.log('queue', queue);
 
-const arrCardQueue = queue ? queue : [''];
+const arrCardQueue = queue ? queue : [];
 console.log('arrCardQueue', arrCardQueue);
 function onClickAddQueueBtn(evt) {
   const savedCardQueue = localStorage.getItem('movie');
@@ -92,12 +93,17 @@ function onClickAddQueueBtn(evt) {
   localStorage.setItem('queue', JSON.stringify(arrCardQueue));
 }
 
-// const watchedBtn = document.querySelector('#watched');
-// console.log(watchedBtn);
 refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
-// const obj = [];
+refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
 
 function onClickWatchedBtn(evt) {
+  const lang = localStorage.getItem('language');
+  const obj = transformObj(watched, lang);
+  const markup = renderFilmCart(obj);
+  refs.filmList.insertAdjacentHTML('beforeend', markup);
+}
+
+function onClickQueueBtn(evt) {
   const lang = localStorage.getItem('language');
   const obj = transformObj(queue, lang);
   const markup = renderFilmCart(obj);
@@ -107,15 +113,28 @@ function onClickWatchedBtn(evt) {
 function transformObj(arrObj, lang) {
   if (lang === 'en-US') {
     arrObj.map(el => {
-      // el.genre_ids = idToGenre(el.genre_ids);
+      let i = 0;
+      el.genre_ids = el.genres
+        .map(el => {
+          i += 1;
+          return i >= 3 ? 'other' : el.name;
+        })
+        .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
+      console.log(el.genre_ids);
     });
     return arrObj;
   }
   if (lang === 'uk-UA') {
     arrObj.map(el => {
-      // el.genre_ids = idToGenreUa(el.genre_ids);
+      let i = 0;
+      el.genre_ids = el.genres
+        .map(el => {
+          i += 1;
+          return i >= 3 ? 'other' : el.name;
+        })
+        .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
     });
