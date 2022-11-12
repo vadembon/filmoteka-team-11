@@ -5,6 +5,7 @@ import { onClickGenre } from './render_genres';
 import { refs } from './refs';
 import transformObj from './transformObject';
 import { onClickSearch } from './render_search';
+import createTrailerMarkup from './addToLibrary';
 
 const apiRequest = new FilmApiService();
 
@@ -30,7 +31,7 @@ export function renderTrendingList() {
 export function onClickTrending() {
   apiRequest.pageNumber = currentPage;
   console.log('pagNum', apiRequest.pageNumber);
-  apiRequest.fetchTrendingMovies().then(res => {
+  apiRequest.fetchWeekTrendingMovies().then(res => {
     renderList(transformObj(res, apiRequest.language));
     console.log(apiRequest.language);
   });

@@ -35,6 +35,28 @@ export default class FilmApiService {
     }
   }
 
+  async fetchWeekTrendingMovies() {
+    try {
+      const url = `${BASE_URL}/trending/movie/week?`;
+      const searchParams = new URLSearchParams({
+        api_key: API_KEY,
+        language: this.language,
+        page: this.pageNumber,
+      });
+
+      // console.log('apiPage before', this.pageNumber);
+      // console.log('url', url);
+      Notiflix.Loading.standard();
+      const trendingData = await axios.get(`${url}${searchParams}`);
+      // console.log('apiPage after', this.pageNumber);
+      Notiflix.Loading.remove();
+      return trendingData.data.results;
+    } catch (error) {
+      console.log(error);
+      Notiflix.failure('Oops, an error occurred');
+    }
+  }
+
   async fetchMoviesWithGenre() {
     try {
       console.log('genreLang', this.language, this.genre);
@@ -79,6 +101,17 @@ export default class FilmApiService {
       console.log(error);
       Notiflix.failure('Oops, an error occurred');
     }
+  }
+
+  async fetchTrailerVideo(id) {
+    const options = {
+      params: {
+        api_key: API_KEY,
+        language: 'en-US',
+      },
+    };
+
+    return axios.get(`${BASE_URL}/movie/${id}/videos`, options);
   }
 
   async fetchGenres() {

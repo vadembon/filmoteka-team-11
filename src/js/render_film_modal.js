@@ -43,32 +43,34 @@ function render(movie) {
 
   refs.modal.insertAdjacentHTML('afterbegin', markup);
 }
-apiRequest.incrementPage();
+// apiRequest.incrementPage();
 //   /////////////////\\\\\\\\\\\\\\\\\\\\
 
-const addWatchedBtn = document.querySelector('.watch_btn');
-const adddQueueBtn = document.querySelector('.queue_btn');
-console.log(adddQueueBtn);
-adddQueueBtn.addEventListener('click', onClickQueueBtn);
-addWatchedBtn.addEventListener('click', onClickWotchedBtn);
-function onClickWotchedBtn(evt) {
-  //   render(details);
-  refs.modal.removeAttribute('hidden');
-  const movie = apiRequest.fetchMoviesDetails('829280');
-  movie.then(res => render(res));
-  function render(movie) {
-    console.log(movie);
-    localStorage.setItem('movie', JSON.stringify(movie));
-  }
-}
-refs.addQueueBtn.addEventListener('click', onClickQueueBtn);
-refs.addWatchedBtn.addEventListener('click', onClickWatchedBtn);
+// const addWatchedBtn = document.querySelector('.watch_btn');
+// const adddQueueBtn = document.querySelector('.queue_btn');
+// console.log(adddQueueBtn);
+// adddQueueBtn.addEventListener('click', onClickQueueBtn);
+// addWatchedBtn.addEventListener('click', onClickWotchedBtn);
+// function onClickWotchedBtn(evt) {
+//   //   render(details);
+//   refs.modal.removeAttribute('hidden');
+//   const movie = apiRequest.fetchMoviesDetails('829280');
+//   movie.then(res => render(res));
+//   function render(movie) {
+//     console.log(movie);
+//     localStorage.setItem('movie', JSON.stringify(movie));
+//   }
+// }
+refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
+refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
 
 const watched = JSON.parse(localStorage.getItem('watched'));
-console.log(watched);
+console.log('watch', watched);
 
 const arrCardWatched = watched ? watched : [''];
-function onClickWatchedBtn(evt) {
+console.log('arrCardWatch', arrCardWatched);
+
+function onClickAddWatchedBtn(evt) {
   const savedCardWatched = localStorage.getItem('movie');
   const parsedCardWatched = JSON.parse(savedCardWatched);
 
@@ -78,16 +80,28 @@ function onClickWatchedBtn(evt) {
 }
 
 const queue = JSON.parse(localStorage.getItem('queue'));
-console.log(queue);
+console.log('queue', queue);
 
 const arrCardQueue = queue ? queue : [''];
-function onClickQueueBtn(evt) {
+console.log('arrCardQueue', arrCardQueue);
+function onClickAddQueueBtn(evt) {
   const savedCardQueue = localStorage.getItem('movie');
   const parsedCardQueue = JSON.parse(savedCardQueue);
 
   arrCardQueue.push(parsedCardQueue);
-
   localStorage.setItem('queue', JSON.stringify(arrCardQueue));
+}
+
+// const watchedBtn = document.querySelector('#watched');
+// console.log(watchedBtn);
+refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
+// const obj = [];
+
+function onClickWatchedBtn(evt) {
+  const lang = localStorage.getItem('language');
+  const obj = transformObj(queue, lang);
+  const markup = renderFilmCart(obj);
+  refs.filmList.insertAdjacentHTML('beforeend', markup);
 }
 
 function transformObj(arrObj, lang) {
@@ -108,16 +122,4 @@ function transformObj(arrObj, lang) {
     console.log('TRANSFORM', arrObj);
     return arrObj;
   }
-}
-
-const watchedBtn = document.querySelector('#watched');
-console.log(watchedBtn);
-watchedBtn.addEventListener('click', onClickWatchedBtn);
-// const obj = [];
-
-function onClickWatchedBtn(evt) {
-  const lang = localStorage.getItem('language');
-  const obj = transformObj(queue, lang);
-  const markup = renderFilmCart(obj);
-  refs.filmList.insertAdjacentHTML('beforeend', markup);
 }
