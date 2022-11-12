@@ -1,22 +1,3 @@
-// import renderModal from '../templates/modal.hbs';
-// import FilmApiService from './movie_database_api';
-// import { refs } from './refs';
-
-// const apiRequest = new FilmApiService();
-// const movie = apiRequest.fetchMoviesDetails('829280');
-
-// movie.then(res => render(res));
-
-// export default function render(movie) {
-//   console.log(movie);
-//   const markup = renderModal(movie);
-//   // console.log(markup);
-//   refs.modal.insertAdjacentHTML('afterbegin', markup);
-// }
-
-// apiRequest.incrementPage();
-
-//////////////////\\\\\\\\\\\\\\\\\\\\\\
 import renderModal from '../templates/modal.hbs';
 import FilmApiService from './movie_database_api';
 import { refs } from './refs';
@@ -31,22 +12,31 @@ refs.filmList.addEventListener('click', onClick);
 
 function onClick(evt) {
   evt.preventDefault();
-  const her = JSON.parse(localStorage.getItem('watched'));
-  console.log(her.map(el => el.id).includes(+evt.path[2].id));
-  console.log(her.map(el => el.id));
-  if (her.map(el => el.id).includes(+evt.path[2].id)) {
-    refs.addWatchedBtn.textContent = 'remove';
-    refs.addWatchedBtn.classList.add('button-remove');
-    const removeWatchdBtn = document.querySelector('.button-remove');
-    // removeWatchdBtn.addEventListener(
-    //   'click',
-    //   onClickRemoveWathed(+evt.path[2].id)
-    // );
-  } else {
-    refs.addWatchedBtn.textContent = 'add to watched';
-    refs.addWatchedBtn.classList.remove('button-remove');
+  if (watched) {
+    const her = JSON.parse(localStorage.getItem('watched'));
+    console.log(her.map(el => el.id).includes(+evt.path[2].id));
+    console.log(her.map(el => el.id));
+    if (her.map(el => el.id).includes(+evt.path[2].id)) {
+      refs.addWatchedBtn.textContent = 'remove';
+      refs.addWatchedBtn.classList.add('button-remove');
+    } else {
+      refs.addWatchedBtn.textContent = 'add to watched';
+      refs.addWatchedBtn.classList.remove('button-remove');
+    }
   }
 
+  if (queue) {
+    const her = JSON.parse(localStorage.getItem('queue'));
+    console.log(her.map(el => el.id).includes(+evt.path[2].id));
+    console.log(her.map(el => el.id));
+    if (her.map(el => el.id).includes(+evt.path[2].id)) {
+      refs.addQueueBtn.textContent = 'remove';
+      refs.addQueueBtn.classList.add('button-remove');
+    } else {
+      refs.addQueueBtn.textContent = 'add to queue';
+      refs.addQueueBtn.classList.remove('button-remove');
+    }
+  }
   console.log(evt.path[2].id);
   apiRequest.language = localStorage.getItem('language');
   const details = apiRequest.fetchMoviesDetails(evt.path[2].id);
@@ -70,21 +60,6 @@ function render(movie) {
 // apiRequest.incrementPage();
 //   /////////////////\\\\\\\\\\\\\\\\\\\\
 
-// const addWatchedBtn = document.querySelector('.watch_btn');
-// const adddQueueBtn = document.querySelector('.queue_btn');
-// console.log(adddQueueBtn);
-// adddQueueBtn.addEventListener('click', onClickQueueBtn);
-// addWatchedBtn.addEventListener('click', onClickWotchedBtn);
-// function onClickWotchedBtn(evt) {
-//   //   render(details);
-//   refs.modal.removeAttribute('hidden');
-//   const movie = apiRequest.fetchMoviesDetails('829280');
-//   movie.then(res => render(res));
-//   function render(movie) {
-//     console.log(movie);
-//     localStorage.setItem('movie', JSON.stringify(movie));
-//   }
-// }
 refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
 refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
 
@@ -98,27 +73,41 @@ console.log('arrCardWatch', arrCardWatched);
 function onClickAddWatchedBtn(evt) {
   const savedCardWatched = localStorage.getItem('movie');
   const parsedCardWatched = JSON.parse(savedCardWatched);
-
   arrCardWatched.push(parsedCardWatched);
   localStorage.setItem('watched', JSON.stringify(arrCardWatched));
-
   watched = JSON.parse(localStorage.getItem('watched'));
 
-  // console.log(arrCardWatched);
+  console.log(refs.addWatchedBtn.textContent === 'remove');
+  if (refs.addWatchedBtn.textContent === 'remove') {
+    refs.addWatchedBtn.textContent = 'add to watched';
+  } else {
+    refs.addWatchedBtn.textContent = 'remove';
+  }
 }
 
 let queue = JSON.parse(localStorage.getItem('queue'));
 console.log('queue', queue);
-
 const arrCardQueue = queue ? queue : [];
 console.log('arrCardQueue', arrCardQueue);
+
 function onClickAddQueueBtn(evt) {
   const savedCardQueue = localStorage.getItem('movie');
   const parsedCardQueue = JSON.parse(savedCardQueue);
-
   arrCardQueue.push(parsedCardQueue);
+  console.log('saved', parsedCardQueue.id);
   localStorage.setItem('queue', JSON.stringify(arrCardQueue));
   queue = JSON.parse(localStorage.getItem('queue'));
+
+  if (refs.addQueueBtn.textContent === 'remove') {
+    refs.addQueueBtn.textContent = 'add to queue';
+    const newArr = queue.filter(el => el.id !== parsedCardQueue.id);
+    localStorage.removeItem('queue');
+    console.log(newArr);
+    localStorage.setItem('queue', JSON.stringify(newArr));
+    // queue.splice(indexDelElQueue, 1);
+  } else {
+    refs.addQueueBtn.textContent = 'remove';
+  }
 }
 
 refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
@@ -136,11 +125,13 @@ function onClickWatchedBtn(evt) {
 }
 
 function onClickQueueBtn(evt) {
+  Notiflix.Loading.standard();
   refs.filmList.innerHTML = '';
   const lang = localStorage.getItem('language');
   const obj = transformObj(queue, lang);
   const markup = renderFilmCart(obj);
   refs.filmList.insertAdjacentHTML('beforeend', markup);
+  Notiflix.Loading.remove();
 }
 
 function transformObj(arrObj, lang) {
@@ -155,6 +146,7 @@ function transformObj(arrObj, lang) {
         .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
+      el.vote_average = el.vote_average.toFixed(1);
       console.log(el.genre_ids);
     });
     return arrObj;
@@ -170,6 +162,7 @@ function transformObj(arrObj, lang) {
         .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
+      el.vote_average = el.vote_average.toFixed(1);
     });
     console.log('TRANSFORM', arrObj);
     return arrObj;
