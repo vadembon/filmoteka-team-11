@@ -65,6 +65,7 @@ function onInput(evt) {
     }
     if (!res.length) {
       Notiflix.Notify.failure('Sorry, film is not found. Please try again.');
+      refs.searchList.innerHTML = '';
       return;
     }
 

@@ -9,7 +9,7 @@ export default function transformObj(arrObj, lang) {
       el.poster_path = !el.poster_path
         ? comingSoon
         : ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      el.vote_average = el.vote_average.toFixed(1);
+      el.vote_average = !el.vote_average ? '' : el.vote_average.toFixed(1);
     });
     return arrObj;
   }
@@ -20,7 +20,7 @@ export default function transformObj(arrObj, lang) {
       el.poster_path = !el.poster_path
         ? comingSoon
         : ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      el.vote_average = el.vote_average.toFixed(1);
+      el.vote_average = !el.vote_average ? '' : el.vote_average.toFixed(1);
     });
     console.log('TRANSFORM', arrObj);
     return arrObj;
