@@ -23,6 +23,7 @@ import { refs } from './refs';
 import renderFilmCart from '../templates/film_cart.hbs';
 import { renderList } from './render_movie_list';
 // import transformObj from './transformObject';
+import Notiflix, { Notify } from 'notiflix';
 
 const apiRequest = new FilmApiService();
 
@@ -65,7 +66,8 @@ function render(movie) {
 refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
 refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
 
-const watched = JSON.parse(localStorage.getItem('watched'));
+let watched = JSON.parse(localStorage.getItem('watched'));
+
 console.log('watch', watched);
 
 const arrCardWatched = watched ? watched : [];
@@ -77,10 +79,13 @@ function onClickAddWatchedBtn(evt) {
 
   arrCardWatched.push(parsedCardWatched);
   localStorage.setItem('watched', JSON.stringify(arrCardWatched));
+
+  watched = JSON.parse(localStorage.getItem('watched'));
+
   // console.log(arrCardWatched);
 }
 
-const queue = JSON.parse(localStorage.getItem('queue'));
+let queue = JSON.parse(localStorage.getItem('queue'));
 console.log('queue', queue);
 
 const arrCardQueue = queue ? queue : [];
@@ -91,19 +96,25 @@ function onClickAddQueueBtn(evt) {
 
   arrCardQueue.push(parsedCardQueue);
   localStorage.setItem('queue', JSON.stringify(arrCardQueue));
+  queue = JSON.parse(localStorage.getItem('queue'));
 }
 
 refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
 refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
 
 function onClickWatchedBtn(evt) {
+  Notiflix.Loading.standard();
+  refs.filmList.innerHTML = '';
   const lang = localStorage.getItem('language');
   const obj = transformObj(watched, lang);
+
   const markup = renderFilmCart(obj);
   refs.filmList.insertAdjacentHTML('beforeend', markup);
+  Notiflix.Loading.remove();
 }
 
 function onClickQueueBtn(evt) {
+  refs.filmList.innerHTML = '';
   const lang = localStorage.getItem('language');
   const obj = transformObj(queue, lang);
   const markup = renderFilmCart(obj);
