@@ -28,13 +28,35 @@ import Notiflix, { Notify } from 'notiflix';
 const apiRequest = new FilmApiService();
 
 refs.filmList.addEventListener('click', onClick);
+
 function onClick(evt) {
   evt.preventDefault();
+  const her = JSON.parse(localStorage.getItem('watched'));
+  console.log(her.map(el => el.id).includes(+evt.path[2].id));
+  console.log(her.map(el => el.id));
+  if (her.map(el => el.id).includes(+evt.path[2].id)) {
+    refs.addWatchedBtn.textContent = 'remove';
+    refs.addWatchedBtn.classList.add('button-remove');
+    const removeWatchdBtn = document.querySelector('.button-remove');
+    // removeWatchdBtn.addEventListener(
+    //   'click',
+    //   onClickRemoveWathed(+evt.path[2].id)
+    // );
+  } else {
+    refs.addWatchedBtn.textContent = 'add to watched';
+    refs.addWatchedBtn.classList.remove('button-remove');
+  }
+
   console.log(evt.path[2].id);
   apiRequest.language = localStorage.getItem('language');
   const details = apiRequest.fetchMoviesDetails(evt.path[2].id);
   // console.log(details);
   details.then(res => render(res));
+}
+
+function onClickRemoveWathed(evt) {
+  refs.addWatchedBtn.textContent = 'add to watched';
+  console.log('remove', evt);
 }
 
 function render(movie) {

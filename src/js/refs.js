@@ -35,4 +35,5 @@ export const refs = {
 
   addWatchedBtn: document.querySelector('.watch_btn'),
   addQueueBtn: document.querySelector('.queue_btn'),
+  // removeWatchdBtn: document.querySelector('.button-remove'),
 };
