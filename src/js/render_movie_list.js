@@ -43,3 +43,10 @@ export function renderList(movieArr) {
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
   refs.searchBtn.setAttribute('disabled', 'disabled');
 }
+
+const arrMov = [];
+const arr = [505642, 948276, 833097, 829280, 664469, 1037858];
+arr.map(id => apiRequest.fetchMoviesDetails(id).then(res => arrMov.push(res)));
+console.log('массив по ИНДЕКСУ', arrMov);
+
+renderList(transformObj(arrMov, apiRequest.language));
