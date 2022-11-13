@@ -55,7 +55,7 @@ function transformLibrary(object, lang) {
         .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      el.vote_average = !el.vote_average ? '' : +el.vote_average.toFixed(1);
+      // el.vote_average = !el.vote_average ? '' : +el.vote_average.toFixed(1);
     });
     // console.log('TRANSFORM', arrObj);
     return object;

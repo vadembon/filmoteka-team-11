@@ -17,20 +17,22 @@ refs.filmList.addEventListener('click', openModal);
 
 function openModal(evt) {
   evt.preventDefault();
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
   const watchedString =
     lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
   const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-  console.log(removeString, watchedString, queueString, evt.path[2].id);
-  if (evt.target.nodeName !== 'IMG') {
-    return;
-  }
+  // console.log(removeString, watchedString, queueString, evt.path[2].id);
 
   refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
   refs.closeModalBtn.addEventListener('click', closeModal);
   refs.backdrop.addEventListener('click', closeModal);
+  document.body.addEventListener('keydown', onEscButton);
+  document.body.addEventListener('click', onBackdropClick);
   refs.backdrop.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
@@ -82,12 +84,23 @@ function openModal(evt) {
 // }
 
 function closeModal(evt) {
-  if (!evt.target.classList.contains('backdrop')) {
-    return;
-  }
   refs.backdrop.classList.add('visually-hidden');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
+  document.body.removeEventListener('keydown', onEscButton);
+  document.body.removeEventListener('click', onBackdropClick);
+}
+
+function onBackdropClick(evt) {
+  if (evt.target.classList.contains('backdrop')) {
+    closeModal();
+  }
+}
+
+function onEscButton(evt) {
+  if (evt.code === 'Escape') {
+    closeModal();
+  }
 }
 
 function onClickAddWatchedBtn(evt) {
@@ -96,12 +109,10 @@ function onClickAddWatchedBtn(evt) {
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
   const watchedString =
     lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
-  const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-  console.log(removeString, watchedString, queueString);
+  // const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
+  // console.log(removeString, watchedString, queueString);
   const watched = JSON.parse(localStorage.getItem('watched'));
   const arrCardWatched = watched ? watched : [];
-
-  console.log(arrCardWatched, watched);
   const savedCardWatched = localStorage.getItem('movie');
   const parsedCardWatched = JSON.parse(savedCardWatched);
 
@@ -126,16 +137,16 @@ function onClickAddQueueBtn(evt) {
   evt.preventDefault();
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
-  const watchedString =
-    lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
+  // const watchedString =
+  //   lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
   const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-  console.log(removeString, watchedString, queueString);
+  // console.log(removeString, watchedString, queueString);
   const queue = JSON.parse(localStorage.getItem('queue'));
   const arrCardQueue = queue ? queue : [];
   const savedCardQueue = localStorage.getItem('movie');
   const parsedCardQueue = JSON.parse(savedCardQueue);
 
-  if (refs.addQueueBtn.textContent === 'remove') {
+  if (refs.addQueueBtn.textContent === removeString) {
     refs.addQueueBtn.textContent = queueString;
     const newArr = arrCardQueue.filter(el => el.id !== parsedCardQueue.id);
     localStorage.removeItem('queue');
@@ -147,10 +158,8 @@ function onClickAddQueueBtn(evt) {
   } else {
     refs.addQueueBtn.textContent = removeString;
     arrCardQueue.push(parsedCardQueue);
-    console.log('saved', parsedCardQueue);
+    // console.log('saved', parsedCardQueue);
     localStorage.setItem('queue', JSON.stringify(arrCardQueue));
-
-    // queue = JSON.parse(localStorage.getItem('queue'));
   }
 }
 

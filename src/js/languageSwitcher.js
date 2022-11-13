@@ -44,7 +44,7 @@ export function onClickEn() {
   refs.modalGenres.textContent = 'Genre';
   refs.modalAbout.textContent = 'About';
 
-  refs.headerLibrary.textContent = 'library';
+  refs.headerLibrary.textContent = 'my library';
   refs.headerHome.textContent = 'home';
   refs.themeDark.textContent = 'dark';
   refs.themeLight.textContent = 'light';
