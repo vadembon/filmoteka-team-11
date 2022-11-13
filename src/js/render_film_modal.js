@@ -84,7 +84,7 @@ function onClickAddWatchedBtn(evt) {
   } else {
     refs.addWatchedBtn.textContent = 'remove';
     arrCardWatched.push(parsedCardWatched);
-    console.log('saved', parsedCardWatched.id);
+    // console.log('saved', parsedCardWatched.id);
     localStorage.setItem('watched', JSON.stringify(arrCardWatched));
   }
 }
@@ -108,7 +108,7 @@ function onClickAddQueueBtn(evt) {
   } else {
     refs.addQueueBtn.textContent = 'remove';
     arrCardQueue.push(parsedCardQueue);
-    console.log('saved', parsedCardQueue.id);
+    // console.log('saved', parsedCardQueue.id);
     localStorage.setItem('queue', JSON.stringify(arrCardQueue));
 
     // queue = JSON.parse(localStorage.getItem('queue'));
