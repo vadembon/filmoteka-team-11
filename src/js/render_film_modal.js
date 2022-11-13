@@ -4,18 +4,22 @@ import { refs } from './refs';
 import renderFilmCart from '../templates/film_cart.hbs';
 import Notiflix, { Notify } from 'notiflix';
 import FilmApiService from './movie_database_api';
+import { modalLanguage } from './languageSwitcher';
 
 const apiRequest = new FilmApiService();
 
 refs.filmList.addEventListener('click', openModal);
-refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
-refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
 
 function openModal(evt) {
   evt.preventDefault();
+
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
   refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
   refs.closeModalBtn.addEventListener('click', closeModal);
+  refs.backdrop.addEventListener('click', closeModal);
   refs.backdrop.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
@@ -49,7 +53,13 @@ function openModal(evt) {
       `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
     );
     render(res);
+    // modalLanguage();
   });
+  const modalVotes = document.querySelector('.js-votes');
+  const modalPopularity = document.querySelector('.popularity');
+  const modalGenres = document.querySelector('.js-genres');
+  const modalAbout = document.querySelector('.js-about');
+  console.log('modal', modalAbout);
 }
 
 function render(movie) {
@@ -59,7 +69,10 @@ function render(movie) {
   refs.modal.innerHTML = markup;
 }
 
-function closeModal() {
+function closeModal(evt) {
+  if (!evt.target.classList.contains('backdrop')) {
+    return;
+  }
   refs.backdrop.classList.add('visually-hidden');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
@@ -117,20 +130,20 @@ function onClickAddQueueBtn(evt) {
 
 export function onClickWatchedBtn(evt) {
   evt.preventDefault();
-  Notiflix.Loading.standard();
-  const lang = localStorage.getItem('language');
-  const arrObj = JSON.parse(localStorage.getItem('watched'));
-  const obj = transformObj(arrObj, lang);
-  const markup = renderFilmCart(obj);
-  refs.filmList.innerHTML = markup;
+  renderLibrary('watched');
   Notiflix.Loading.remove();
 }
 
 export function onClickQueueBtn(evt) {
   evt.preventDefault();
+  renderLibrary('queue');
+  Notiflix.Loading.remove();
+}
+
+function renderLibrary(page) {
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
-  const arrObj = JSON.parse(localStorage.getItem('queue'));
+  const arrObj = JSON.parse(localStorage.getItem(page));
   const obj = transformObj(arrObj, lang);
   const markup = renderFilmCart(obj);
   refs.filmList.innerHTML = markup;

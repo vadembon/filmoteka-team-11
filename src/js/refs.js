@@ -5,6 +5,12 @@ export const refs = {
   searchBtn: document.querySelector('.header__form-submit-btn'),
   searchList: document.querySelector('.search-form-list'),
 
+  modalVotes: document.querySelector('.js-votes'),
+  modalPopularity: document.querySelector('.js-popularity'),
+  modalOriginalTitle: document.querySelector('.js-title'),
+  modalGenres: document.querySelector('.js-genres'),
+  modalAbout: document.querySelector('.js-about'),
+
   paginationRef: document.querySelector('.pagination-container'),
 
   headerSection: document.querySelector('.header__section'),

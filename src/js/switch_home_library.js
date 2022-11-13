@@ -25,6 +25,8 @@ function switchToHome(evt) {
 
 function switchToLibrary(evt) {
   evt.preventDefault();
+  refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
+  refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
   refs.filmList.innerHTML = '';
   refs.headerSection.classList.remove('header__section');
   refs.headerSection.classList.add('header-library');
