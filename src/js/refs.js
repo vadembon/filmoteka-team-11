@@ -49,7 +49,7 @@ export const refs = {
   backdrop: document.querySelector('.backdrop'),
   closeModalBtn: document.querySelector('[data-modal-close]'),
 
-  addWatchedBtn: document.querySelector('.watch_btn'),
-  addQueueBtn: document.querySelector('.queue_btn'),
+  addWatchedBtn: document.querySelector('.js-watch-btn'),
+  addQueueBtn: document.querySelector('.js-queue-btn'),
   // removeWatchdBtn: document.querySelector('.button-remove'),
 };

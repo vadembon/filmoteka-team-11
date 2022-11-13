@@ -5,7 +5,6 @@ import { onClickGenre } from './render_genres';
 import { refs } from './refs';
 import transformObj from './transformObject';
 import { onClickSearch } from './render_search';
-import createTrailerMarkup from './addToLibrary';
 
 const apiRequest = new FilmApiService();
 

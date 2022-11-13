@@ -1,28 +1,32 @@
-// import renderModal from '../templates/modal.hbs';
 import FilmApiService from './movie_database_api';
 import { refs } from './refs';
-import renderFilmCart from '../templates/film_cart.hbs';
-import Notiflix, { Notify } from 'notiflix';
-import FilmApiService from './movie_database_api';
-import { modalLanguage } from './languageSwitcher';
-import {
-  renderModal,
-  queueString,
-  watchedString,
-  removeString,
-} from './render_modal';
-import { transformLibrary } from './render_modal';
 
 const apiRequest = new FilmApiService();
+const arrCardWatched = [];
+
+// const lang = localStorage.getItem('language');
+// const apiRequest = new FilmApiService();
+// const removeString = lang === 'en-US' ? 'remove' : 'видалити';
+// const watchedString =
+//   lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
+// const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
+
+// console.log(removeString, watchedString, queueString);
 
 refs.filmList.addEventListener('click', openModal);
 
 function openModal(evt) {
   evt.preventDefault();
-
+  const lang = localStorage.getItem('language');
+  const removeString = lang === 'en-US' ? 'remove' : 'видалити';
+  const watchedString =
+    lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
+  const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
+  console.log(removeString, watchedString, queueString, evt.path[2].id);
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
+
   refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
   refs.closeModalBtn.addEventListener('click', closeModal);
@@ -30,7 +34,9 @@ function openModal(evt) {
   refs.backdrop.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
-
+  console.log(queue, watched);
+  refs.addWatchedBtn.textContent = watchedString;
+  refs.addQueueBtn.textContent = queueString;
   if (watched) {
     const her = JSON.parse(localStorage.getItem('watched'));
     if (her.map(el => el.id).includes(+evt.path[2].id)) {
@@ -38,12 +44,14 @@ function openModal(evt) {
       refs.addWatchedBtn.classList.add('button-remove');
     } else {
       refs.addWatchedBtn.textContent = watchedString;
+      console.log('watched');
       refs.addWatchedBtn.classList.remove('button-remove');
     }
   }
 
   if (queue) {
     const her = JSON.parse(localStorage.getItem('queue'));
+    console.log(her);
     if (her.map(el => el.id).includes(+evt.path[2].id)) {
       refs.addQueueBtn.textContent = removeString;
       refs.addQueueBtn.classList.add('button-remove');
@@ -61,6 +69,7 @@ function openModal(evt) {
     );
     console.log(res);
     renderModal(res);
+    localStorage.setItem('movie', JSON.stringify(res));
     // modalLanguage();
   });
 }
@@ -83,8 +92,16 @@ function closeModal(evt) {
 
 function onClickAddWatchedBtn(evt) {
   evt.preventDefault();
+  const lang = localStorage.getItem('language');
+  const removeString = lang === 'en-US' ? 'remove' : 'видалити';
+  const watchedString =
+    lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
+  const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
+  console.log(removeString, watchedString, queueString);
   const watched = JSON.parse(localStorage.getItem('watched'));
   const arrCardWatched = watched ? watched : [];
+
+  console.log(arrCardWatched, watched);
   const savedCardWatched = localStorage.getItem('movie');
   const parsedCardWatched = JSON.parse(savedCardWatched);
 
@@ -107,12 +124,18 @@ function onClickAddWatchedBtn(evt) {
 
 function onClickAddQueueBtn(evt) {
   evt.preventDefault();
+  const lang = localStorage.getItem('language');
+  const removeString = lang === 'en-US' ? 'remove' : 'видалити';
+  const watchedString =
+    lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
+  const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
+  console.log(removeString, watchedString, queueString);
   const queue = JSON.parse(localStorage.getItem('queue'));
   const arrCardQueue = queue ? queue : [];
   const savedCardQueue = localStorage.getItem('movie');
   const parsedCardQueue = JSON.parse(savedCardQueue);
 
-  if (refs.addQueueBtn.textContent === removeString) {
+  if (refs.addQueueBtn.textContent === 'remove') {
     refs.addQueueBtn.textContent = queueString;
     const newArr = arrCardQueue.filter(el => el.id !== parsedCardQueue.id);
     localStorage.removeItem('queue');
@@ -124,73 +147,64 @@ function onClickAddQueueBtn(evt) {
   } else {
     refs.addQueueBtn.textContent = removeString;
     arrCardQueue.push(parsedCardQueue);
-    // console.log('saved', parsedCardQueue.id);
+    console.log('saved', parsedCardQueue);
     localStorage.setItem('queue', JSON.stringify(arrCardQueue));
 
     // queue = JSON.parse(localStorage.getItem('queue'));
   }
 }
 
-export function onClickWatchedBtn(evt) {
-  evt.preventDefault();
-  renderLibrary('watched');
-  Notiflix.Loading.remove();
-}
-
-export function onClickQueueBtn(evt) {
-  evt.preventDefault();
-  renderLibrary('queue');
-  Notiflix.Loading.remove();
-}
-
-function renderLibrary(page) {
-  Notiflix.Loading.standard();
+function renderModal(obj) {
+  console.log('modal', obj);
   const lang = localStorage.getItem('language');
-  const arrObj = JSON.parse(localStorage.getItem(page));
-  const obj = transformLibrary(arrObj, lang);
-  console.log(arrObj, obj);
-  const markup = renderFilmCart(obj);
-  refs.filmList.innerHTML = markup;
-  Notiflix.Loading.remove();
+  const transObj = transformModal(obj, lang);
+  console.log('modal', transObj);
+
+  refs.modalImage.setAttribute('src', `${transObj.poster_path}`);
+  refs.modalFilmTitle.textContent = transObj.title;
+  refs.modalVoteAverage.textContent = transObj.vote_average;
+  refs.modalVoteCount.textContent = transObj.vote_count;
+  refs.modalPopularityValue.textContent = transObj.popularity;
+  refs.modalOriginalTitleValue.textContent = transObj.original_title;
+  refs.modalGenresValue.textContent = transObj.genres_name;
+  refs.modalAboutValue.textContent = transObj.overview;
 }
 
-// function transformLibrary(object, lang) {
-//   // console.log('transform', arrObj);
-//   if (lang === 'en-US') {
-//     object.map(object => {
-//       let i = 0;
-//       object.genres_name = object.genres
-//         .map(el => {
-//           i += 1;
-//           return i >= 3 ? 'Other' : el.name;
-//         })
-//         .slice(0, 3);
-//       object.release_date = object.release_date.slice(0, 4);
-//       object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
-//       object.vote_average = !object.vote_average
-//         ? ''
-//         : object.vote_average.toFixed(1);
-//       console.log(object.genres_name);
-//     });
-//     return object;
-//   }
+export function transformModal(object, lang) {
+  // console.log('transform', arrObj);
+  if (lang === 'en-US') {
+    let i = 0;
+    object.genres_name = object.genres
+      .map(el => {
+        i += 1;
+        return i >= 3 ? 'Other' : el.name;
+      })
+      .slice(0, 3);
+    object.release_date = object.release_date.slice(0, 4);
+    object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
+    object.vote_average = !object.vote_average
+      ? ''
+      : object.vote_average.toFixed(1);
+    console.log(object.genres_name);
 
-//   if (lang === 'uk-UA') {
-//     object.map(object => {
-//       let i = 0;
-//       object.genres_name = object.genres
-//         .map(el => {
-//           i += 1;
-//           return i >= 3 ? 'Інші' : el.name;
-//         })
-//         .slice(0, 3);
-//       object.release_date = object.release_date.slice(0, 4);
-//       object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
-//       object.vote_average = !object.vote_average
-//         ? ''
-//         : object.vote_average.toFixed(1);
-//     });
-//     // console.log('TRANSFORM', arrObj);
-//     return object;
-//   }
-// }
+    return object;
+  }
+
+  if (lang === 'uk-UA') {
+    let i = 0;
+    object.genres_name = object.genres
+      .map(el => {
+        i += 1;
+        return i >= 3 ? 'Інші' : el.name;
+      })
+      .slice(0, 3);
+    object.release_date = object.release_date.slice(0, 4);
+    object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
+    object.vote_average = !object.vote_average
+      ? ''
+      : object.vote_average.toFixed(1);
+
+    // console.log('TRANSFORM', arrObj);
+    return object;
+  }
+}

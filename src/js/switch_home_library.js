@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import { renderTrendingList } from './render_movie_list';
-import { onClickQueueBtn, onClickWatchedBtn } from './render_film_modal';
+import { onClickQueueBtn, onClickWatchedBtn } from './render_library';
 
 refs.headerHome.addEventListener('click', switchToHome);
 refs.headerLibrary.addEventListener('click', switchToLibrary);
