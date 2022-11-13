@@ -1,8 +1,9 @@
 import { refs } from './refs';
 
+const lang = localStorage.getItem('language');
+
 export function renderModal(obj) {
   // console.log('modal', obj);
-  const lang = localStorage.getItem('language');
   const transObj = transformModal(obj, lang);
   console.log('modal', transObj);
 
@@ -53,3 +54,9 @@ function transformModal(object, lang) {
     return object;
   }
 }
+
+export const removeString = lang === 'en-US' ? 'remove' : 'видалити';
+export const watchedString =
+  lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
+export const queueString =
+  lang === 'en-US' ? 'add to queue' : 'додати до черги';

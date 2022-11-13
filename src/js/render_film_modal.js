@@ -5,7 +5,12 @@ import renderFilmCart from '../templates/film_cart.hbs';
 import Notiflix, { Notify } from 'notiflix';
 import FilmApiService from './movie_database_api';
 import { modalLanguage } from './languageSwitcher';
-import { renderModal } from './render_modal';
+import {
+  renderModal,
+  queueString,
+  watchedString,
+  removeString,
+} from './render_modal';
 
 const apiRequest = new FilmApiService();
 
@@ -28,10 +33,10 @@ function openModal(evt) {
   if (watched) {
     const her = JSON.parse(localStorage.getItem('watched'));
     if (her.map(el => el.id).includes(+evt.path[2].id)) {
-      refs.addWatchedBtn.textContent = 'remove';
+      refs.addWatchedBtn.textContent = removeString;
       refs.addWatchedBtn.classList.add('button-remove');
     } else {
-      refs.addWatchedBtn.textContent = 'add to watched';
+      refs.addWatchedBtn.textContent = watchedString;
       refs.addWatchedBtn.classList.remove('button-remove');
     }
   }
@@ -39,10 +44,10 @@ function openModal(evt) {
   if (queue) {
     const her = JSON.parse(localStorage.getItem('queue'));
     if (her.map(el => el.id).includes(+evt.path[2].id)) {
-      refs.addQueueBtn.textContent = 'remove';
+      refs.addQueueBtn.textContent = removeString;
       refs.addQueueBtn.classList.add('button-remove');
     } else {
-      refs.addQueueBtn.textContent = 'add to queue';
+      refs.addQueueBtn.textContent = queueString;
       refs.addQueueBtn.classList.remove('button-remove');
     }
   }
@@ -81,8 +86,8 @@ function onClickAddWatchedBtn(evt) {
   const savedCardWatched = localStorage.getItem('movie');
   const parsedCardWatched = JSON.parse(savedCardWatched);
 
-  if (refs.addWatchedBtn.textContent === 'remove') {
-    refs.addWatchedBtn.textContent = 'add to watched';
+  if (refs.addWatchedBtn.textContent === removeString) {
+    refs.addWatchedBtn.textContent = watchedString;
     const newArr = arrCardWatched.filter(el => el.id !== parsedCardWatched.id);
     localStorage.removeItem('watched');
 
@@ -91,7 +96,7 @@ function onClickAddWatchedBtn(evt) {
     const parseFilter = JSON.parse(localStorage.getItem('watchedFilter'));
     localStorage.setItem('watched', JSON.stringify(parseFilter));
   } else {
-    refs.addWatchedBtn.textContent = 'remove';
+    refs.addWatchedBtn.textContent = removeString;
     arrCardWatched.push(parsedCardWatched);
     // console.log('saved', parsedCardWatched.id);
     localStorage.setItem('watched', JSON.stringify(arrCardWatched));
@@ -105,8 +110,8 @@ function onClickAddQueueBtn(evt) {
   const savedCardQueue = localStorage.getItem('movie');
   const parsedCardQueue = JSON.parse(savedCardQueue);
 
-  if (refs.addQueueBtn.textContent === 'remove') {
-    refs.addQueueBtn.textContent = 'add to queue';
+  if (refs.addQueueBtn.textContent === removeString) {
+    refs.addQueueBtn.textContent = queueString;
     const newArr = arrCardQueue.filter(el => el.id !== parsedCardQueue.id);
     localStorage.removeItem('queue');
 
@@ -115,7 +120,7 @@ function onClickAddQueueBtn(evt) {
     const parseFilter = JSON.parse(localStorage.getItem('queueFilter'));
     localStorage.setItem('queue', JSON.stringify(parseFilter));
   } else {
-    refs.addQueueBtn.textContent = 'remove';
+    refs.addQueueBtn.textContent = removeString;
     arrCardQueue.push(parsedCardQueue);
     // console.log('saved', parsedCardQueue.id);
     localStorage.setItem('queue', JSON.stringify(arrCardQueue));
