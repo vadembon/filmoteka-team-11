@@ -21,7 +21,7 @@ const afterDotsRef = document.querySelector('#after');
 const gallery = document.querySelector('.collection');
 
 let currentPage = 1,
-  maxPage = 96,
+  maxPage = 100,
   neighbourPagesCount = 2 // количество оторажаемых соседних номеров. для значение 1 номера будут выглядеть "1 ... 6 7 8 ... 96", для значения 2 "1 ... 5 6 7 8 9 ... 96";
 
 btn1Ref.addEventListener('click', onBtnClick);
@@ -103,9 +103,11 @@ function render(pageNumber) {
       el.classList.add('pagination--current');
     }
   });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 window.render = render;
+
 // export function paginationRender(fetchFunction) {
 //   // gallery.innerHTML = '';
 //   // const funct = apiRequest.fetchTrendingMovies();
