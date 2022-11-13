@@ -15,39 +15,24 @@ export default class FilmApiService {
 
   async fetchTrendingMovies() {
     try {
-      const url = `${BASE_URL}/trending/movie/day?`;
-      const searchParams = new URLSearchParams({
-        api_key: API_KEY,
-        language: this.language,
-        page: this.pageNumber,
-      });
-
-      // console.log('apiPage before', this.pageNumber);
-      // console.log('url', url);
+      const lang = localStorage.getItem('language');
+      const url = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}`;
       Notiflix.Loading.standard();
-      const trendingData = await axios.get(`${url}${searchParams}`);
-      // console.log('apiPage after', this.pageNumber);
+      const trendingData = await axios.get(url);
       Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
       console.log(error);
-      Notiflix.failure('Oops, an error occurred');
+      // Notiflix.failure('Oops, an error occurred');
     }
   }
 
   async fetchWeekTrendingMovies() {
     try {
-      const url = `${BASE_URL}/trending/movie/week?`;
-      const searchParams = new URLSearchParams({
-        api_key: API_KEY,
-        language: this.language,
-        page: this.pageNumber,
-      });
-
-      // console.log('apiPage before', this.pageNumber);
-      // console.log('url', url);
+      const lang = localStorage.getItem('language');
+      const url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}`;
       Notiflix.Loading.standard();
-      const trendingData = await axios.get(`${url}${searchParams}`);
+      const trendingData = await axios.get(url);
       // console.log('apiPage after', this.pageNumber);
       Notiflix.Loading.remove();
       return trendingData.data.results;

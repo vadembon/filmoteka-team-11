@@ -21,6 +21,7 @@ function switchToHome(evt) {
   refs.enLanguageBtn.style.display = 'block';
   refs.headerLibrary.classList.remove('header__nav-link--active');
   refs.headerHome.classList.add('header__nav-link--active');
+  refs.paginationRef.classList.remove('visually-hidden');
 }
 
 function switchToLibrary(evt) {
@@ -28,6 +29,7 @@ function switchToLibrary(evt) {
   refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
   refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
   refs.filmList.innerHTML = '';
+  renderTrendingList();
   refs.headerSection.classList.remove('header__section');
   refs.headerSection.classList.add('header-library');
   refs.searchForm.style.display = 'none';
@@ -38,4 +40,5 @@ function switchToLibrary(evt) {
   refs.enLanguageBtn.style.display = 'none';
   refs.headerLibrary.classList.add('header__nav-link--active');
   refs.headerHome.classList.remove('header__nav-link--active');
+  refs.paginationRef.classList.add('visually-hidden');
 }

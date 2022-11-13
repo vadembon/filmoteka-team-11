@@ -1,6 +1,7 @@
 import Notiflix, { Notify } from 'notiflix';
 import renderFilmCart from '../templates/film_cart.hbs';
 import { refs } from './refs';
+import nothing from '../images/nothing.webp ';
 
 export function onClickWatchedBtn(evt) {
   evt.preventDefault();
@@ -14,12 +15,17 @@ export function onClickQueueBtn(evt) {
   Notiflix.Loading.remove();
 }
 
-function renderLibrary(page) {
+function renderLibrary(key) {
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
-  const arrObj = JSON.parse(localStorage.getItem(page));
+  const arrObj = JSON.parse(localStorage.getItem(key));
+  if (!arrObj.length) {
+    refs.filmList.innerHTML = `<img src="${nothing}" alt="Your Library is empty" style='	margin-left: auto;
+	margin-right: auto;'></img>`;
+    Notiflix.Loading.remove();
+    return;
+  }
   const obj = transformLibrary(arrObj, lang);
-  console.log(arrObj, obj);
   const markup = renderFilmCart(obj);
   refs.filmList.innerHTML = markup;
   Notiflix.Loading.remove();
@@ -30,7 +36,7 @@ function transformLibrary(object, lang) {
   if (lang === 'en-US') {
     object.map(el => {
       let i = 0;
-      el.genres_name = el.genres
+      el.genre_ids = el.genres
         .map(el => {
           i += 1;
           return i >= 3 ? 'Other' : el.name;
@@ -47,7 +53,7 @@ function transformLibrary(object, lang) {
   if (lang === 'uk-UA') {
     object.map(el => {
       let i = 0;
-      el.genres_name = el.genres
+      el.genre_ids = el.genres
         .map(el => {
           i += 1;
           return i >= 3 ? 'Інші' : el.name;

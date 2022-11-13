@@ -19,7 +19,7 @@ export const refs = {
   modalOriginalTitleValue: document.querySelector('.js-original-title-value'),
   modalGenresValue: document.querySelector('.js-genres-value'),
   modalAboutValue: document.querySelector('.film__about__text'),
-  // modal: document.querySelector('.'),
+  modalContainer: document.querySelector('.modal-container'),
 
   paginationRef: document.querySelector('.pagination-container'),
 
@@ -51,5 +51,7 @@ export const refs = {
 
   addWatchedBtn: document.querySelector('.js-watch-btn'),
   addQueueBtn: document.querySelector('.js-queue-btn'),
+
+  sliderGlide: document.querySelector('.glide__slides'),
   // removeWatchdBtn: document.querySelector('.button-remove'),
 };

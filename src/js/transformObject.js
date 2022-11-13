@@ -22,7 +22,7 @@ export default function transformObj(arrObj, lang) {
         : ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
       el.vote_average = !el.vote_average ? '' : el.vote_average.toFixed(1);
     });
-    console.log('TRANSFORM', arrObj);
+
     return arrObj;
   }
 }

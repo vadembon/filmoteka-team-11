@@ -1,5 +1,6 @@
 import FilmApiService from './movie_database_api';
 import { refs } from './refs';
+import comingSoon from '../images/coming_soon.jpg';
 
 const apiRequest = new FilmApiService();
 const arrCardWatched = [];
@@ -14,12 +15,25 @@ const arrCardWatched = [];
 // console.log(removeString, watchedString, queueString);
 
 refs.filmList.addEventListener('click', openModal);
+refs.sliderGlide.addEventListener('click', onSliderClick);
+refs.searchList.addEventListener('click', onSearchClick);
 
-function openModal(evt) {
+function onSearchClick(evt) {
+  console.log(evt);
+  openModal(evt, evt.path[2].id);
+}
+
+function onSliderClick(evt) {
+  // console.log(evt.path[0].id);
+  openModal(evt, evt.path[0].id);
+}
+
+function openModal(evt, id) {
   evt.preventDefault();
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
+  const movieId = id ? id : evt.path[2].id;
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
   const watchedString =
@@ -33,6 +47,7 @@ function openModal(evt) {
   document.body.addEventListener('keydown', onEscButton);
   document.body.addEventListener('click', onBackdropClick);
   refs.backdrop.classList.remove('visually-hidden');
+  refs.modalContainer.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
   console.log(queue, watched);
@@ -40,7 +55,7 @@ function openModal(evt) {
   refs.addQueueBtn.textContent = queueString;
   if (watched) {
     const her = JSON.parse(localStorage.getItem('watched'));
-    if (her.map(el => el.id).includes(+evt.path[2].id)) {
+    if (her.map(el => el.id).includes(+movieId)) {
       refs.addWatchedBtn.textContent = removeString;
       refs.addWatchedBtn.classList.add('button-remove');
     } else {
@@ -53,7 +68,7 @@ function openModal(evt) {
   if (queue) {
     const her = JSON.parse(localStorage.getItem('queue'));
     console.log(her);
-    if (her.map(el => el.id).includes(+evt.path[2].id)) {
+    if (her.map(el => el.id).includes(+movieId)) {
       refs.addQueueBtn.textContent = removeString;
       refs.addQueueBtn.classList.add('button-remove');
     } else {
@@ -62,15 +77,15 @@ function openModal(evt) {
     }
   }
   apiRequest.language = localStorage.getItem('language');
-  const details = apiRequest.fetchMoviesDetails(evt.path[2].id);
+  const details = apiRequest.fetchMoviesDetails(movieId);
   details.then(res => {
     refs.backdrop.setAttribute(
       'style',
       `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
     );
     console.log(res);
-    renderModal(res);
-    localStorage.setItem('movie', JSON.stringify(res));
+    setTimeout(renderModal(res), 2500);
+
     // modalLanguage();
   });
 }
@@ -88,6 +103,7 @@ function closeModal(evt) {
   refs.backdrop.classList.add('visually-hidden');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
+  // refs.sliderGlide.removeEventListener('click', onSliderClick);
 }
 
 function onBackdropClick(evt) {
@@ -136,10 +152,7 @@ function onClickAddQueueBtn(evt) {
   evt.preventDefault();
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
-  // const watchedString =
-  //   lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
   const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-  // console.log(removeString, watchedString, queueString);
   const queue = JSON.parse(localStorage.getItem('queue'));
   const arrCardQueue = queue ? queue : [];
   const savedCardQueue = localStorage.getItem('movie');
@@ -163,10 +176,10 @@ function onClickAddQueueBtn(evt) {
 }
 
 function renderModal(obj) {
-  console.log('modal', obj);
+  // console.log('modal', obj);
   const lang = localStorage.getItem('language');
   const transObj = transformModal(obj, lang);
-  console.log('modal', transObj);
+  // console.log('modal', transObj);
 
   refs.modalImage.setAttribute('src', `${transObj.poster_path}`);
   refs.modalFilmTitle.textContent = transObj.title;
@@ -176,6 +189,7 @@ function renderModal(obj) {
   refs.modalOriginalTitleValue.textContent = transObj.original_title;
   refs.modalGenresValue.textContent = transObj.genres_name;
   refs.modalAboutValue.textContent = transObj.overview;
+  localStorage.setItem('movie', JSON.stringify(obj));
 }
 
 export function transformModal(object, lang) {
@@ -189,7 +203,9 @@ export function transformModal(object, lang) {
       })
       .slice(0, 3);
     object.release_date = object.release_date.slice(0, 4);
-    object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
+    object.poster_path = !object.poster_path
+      ? comingSoon
+      : ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
     object.vote_average = !object.vote_average
       ? ''
       : object.vote_average.toFixed(1);
@@ -207,7 +223,9 @@ export function transformModal(object, lang) {
       })
       .slice(0, 3);
     object.release_date = object.release_date.slice(0, 4);
-    object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
+    object.poster_path = !object.poster_path
+      ? comingSoon
+      : ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
     object.vote_average = !object.vote_average
       ? ''
       : object.vote_average.toFixed(1);
