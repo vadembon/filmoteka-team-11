@@ -30,7 +30,6 @@ function openModal(evt) {
   refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
   refs.closeModalBtn.addEventListener('click', closeModal);
-  refs.backdrop.addEventListener('click', closeModal);
   document.body.addEventListener('keydown', onEscButton);
   document.body.addEventListener('click', onBackdropClick);
   refs.backdrop.classList.remove('visually-hidden');
@@ -84,11 +83,11 @@ function openModal(evt) {
 // }
 
 function closeModal(evt) {
+  document.body.removeEventListener('keydown', onEscButton);
+  document.body.removeEventListener('click', onBackdropClick);
   refs.backdrop.classList.add('visually-hidden');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
-  document.body.removeEventListener('keydown', onEscButton);
-  document.body.removeEventListener('click', onBackdropClick);
 }
 
 function onBackdropClick(evt) {

@@ -16,7 +16,7 @@ export function idToGenreUa(id) {
   let ar = [];
   genresUa.map(el => {
     if (ar.length >= 3) {
-      ar = [ar[0], ar[1], 'other'];
+      ar = [ar[0], ar[1], 'Інші'];
       return;
     }
     if (id.includes(el.id)) ar.push(el.name);
