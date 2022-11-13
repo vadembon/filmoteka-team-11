@@ -11,6 +11,7 @@ import {
   watchedString,
   removeString,
 } from './render_modal';
+import { transformLibrary } from './render_modal';
 
 const apiRequest = new FilmApiService();
 
@@ -58,6 +59,7 @@ function openModal(evt) {
       'style',
       `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
     );
+    console.log(res);
     renderModal(res);
     // modalLanguage();
   });
@@ -145,8 +147,50 @@ function renderLibrary(page) {
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
   const arrObj = JSON.parse(localStorage.getItem(page));
-  const obj = transformObj(arrObj, lang);
+  const obj = transformLibrary(arrObj, lang);
+  console.log(arrObj, obj);
   const markup = renderFilmCart(obj);
   refs.filmList.innerHTML = markup;
   Notiflix.Loading.remove();
 }
+
+// function transformLibrary(object, lang) {
+//   // console.log('transform', arrObj);
+//   if (lang === 'en-US') {
+//     object.map(object => {
+//       let i = 0;
+//       object.genres_name = object.genres
+//         .map(el => {
+//           i += 1;
+//           return i >= 3 ? 'Other' : el.name;
+//         })
+//         .slice(0, 3);
+//       object.release_date = object.release_date.slice(0, 4);
+//       object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
+//       object.vote_average = !object.vote_average
+//         ? ''
+//         : object.vote_average.toFixed(1);
+//       console.log(object.genres_name);
+//     });
+//     return object;
+//   }
+
+//   if (lang === 'uk-UA') {
+//     object.map(object => {
+//       let i = 0;
+//       object.genres_name = object.genres
+//         .map(el => {
+//           i += 1;
+//           return i >= 3 ? 'Інші' : el.name;
+//         })
+//         .slice(0, 3);
+//       object.release_date = object.release_date.slice(0, 4);
+//       object.poster_path = ` https://image.tmdb.org/t/p/w500${object.poster_path}`;
+//       object.vote_average = !object.vote_average
+//         ? ''
+//         : object.vote_average.toFixed(1);
+//     });
+//     // console.log('TRANSFORM', arrObj);
+//     return object;
+//   }
+// }
