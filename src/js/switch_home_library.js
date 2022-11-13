@@ -1,11 +1,14 @@
 import { refs } from './refs';
 import { renderTrendingList } from './render_movie_list';
+import { onClickQueueBtn, onClickWatchedBtn } from './render_film_modal';
 
 refs.headerHome.addEventListener('click', switchToHome);
 refs.headerLibrary.addEventListener('click', switchToLibrary);
 
 function switchToHome(evt) {
   evt.preventDefault();
+  refs.headerLibrBtnWatched.removeEventListener('click', onClickWatchedBtn);
+  refs.headerLibrBtnQueue.removeEventListener('click', onClickQueueBtn);
   refs.filmList.innerHTML = '';
   renderTrendingList();
   refs.headerSection.classList.remove('header-library');

@@ -7,14 +7,16 @@ import FilmApiService from './movie_database_api';
 
 const apiRequest = new FilmApiService();
 
-refs.filmList.addEventListener('click', onClick);
+refs.filmList.addEventListener('click', openModal);
 refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
 refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
-refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
-refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
 
-function onClick(evt) {
+function openModal(evt) {
   evt.preventDefault();
+  refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
+  refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
+  refs.closeModalBtn.addEventListener('click', closeModal);
+  refs.backdrop.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
 
@@ -31,8 +33,6 @@ function onClick(evt) {
 
   if (queue) {
     const her = JSON.parse(localStorage.getItem('queue'));
-    // console.log(her.map(el => el.id).includes(+evt.path[2].id));
-    // console.log(her.map(el => el.id));
     if (her.map(el => el.id).includes(+evt.path[2].id)) {
       refs.addQueueBtn.textContent = 'remove';
       refs.addQueueBtn.classList.add('button-remove');
@@ -43,7 +43,13 @@ function onClick(evt) {
   }
   apiRequest.language = localStorage.getItem('language');
   const details = apiRequest.fetchMoviesDetails(evt.path[2].id);
-  details.then(res => render(res));
+  details.then(res => {
+    refs.backdrop.setAttribute(
+      'style',
+      `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
+    );
+    render(res);
+  });
 }
 
 function render(movie) {
@@ -51,6 +57,12 @@ function render(movie) {
   localStorage.setItem('movie', JSON.stringify(movie));
   const markup = renderModal(movie);
   refs.modal.innerHTML = markup;
+}
+
+function closeModal() {
+  refs.backdrop.classList.add('visually-hidden');
+  refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
+  refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
 }
 
 function onClickAddWatchedBtn(evt) {
@@ -103,7 +115,7 @@ function onClickAddQueueBtn(evt) {
   }
 }
 
-function onClickWatchedBtn(evt) {
+export function onClickWatchedBtn(evt) {
   evt.preventDefault();
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
@@ -114,7 +126,7 @@ function onClickWatchedBtn(evt) {
   Notiflix.Loading.remove();
 }
 
-function onClickQueueBtn(evt) {
+export function onClickQueueBtn(evt) {
   evt.preventDefault();
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
