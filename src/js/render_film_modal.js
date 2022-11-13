@@ -1,10 +1,11 @@
-import renderModal from '../templates/modal.hbs';
+// import renderModal from '../templates/modal.hbs';
 import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import renderFilmCart from '../templates/film_cart.hbs';
 import Notiflix, { Notify } from 'notiflix';
 import FilmApiService from './movie_database_api';
 import { modalLanguage } from './languageSwitcher';
+import { renderModal } from './render_modal';
 
 const apiRequest = new FilmApiService();
 
@@ -52,22 +53,17 @@ function openModal(evt) {
       'style',
       `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
     );
-    render(res);
+    renderModal(res);
     // modalLanguage();
   });
-  const modalVotes = document.querySelector('.js-votes');
-  const modalPopularity = document.querySelector('.popularity');
-  const modalGenres = document.querySelector('.js-genres');
-  const modalAbout = document.querySelector('.js-about');
-  console.log('modal', modalAbout);
 }
 
-function render(movie) {
-  console.log(movie);
-  localStorage.setItem('movie', JSON.stringify(movie));
-  const markup = renderModal(movie);
-  refs.modal.innerHTML = markup;
-}
+// function render(movie) {
+//   console.log(movie);
+//   localStorage.setItem('movie', JSON.stringify(movie));
+//   const markup = renderModal(movie);
+//   refs.modal.innerHTML = markup;
+// }
 
 function closeModal(evt) {
   if (!evt.target.classList.contains('backdrop')) {
@@ -148,40 +144,4 @@ function renderLibrary(page) {
   const markup = renderFilmCart(obj);
   refs.filmList.innerHTML = markup;
   Notiflix.Loading.remove();
-}
-
-function transformObj(arrObj, lang) {
-  console.log('transform', arrObj);
-  if (lang === 'en-US') {
-    arrObj.map(el => {
-      let i = 0;
-      el.genre_ids = el.genres
-        .map(el => {
-          i += 1;
-          return i >= 3 ? 'other' : el.name;
-        })
-        .slice(0, 3);
-      el.release_date = el.release_date.slice(0, 4);
-      el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      el.vote_average = !el.vote_average ? '' : el.vote_average.toFixed(1);
-      console.log(el.genre_ids);
-    });
-    return arrObj;
-  }
-  if (lang === 'uk-UA') {
-    arrObj.map(el => {
-      let i = 0;
-      el.genre_ids = el.genres
-        .map(el => {
-          i += 1;
-          return i >= 3 ? 'other' : el.name;
-        })
-        .slice(0, 3);
-      el.release_date = el.release_date.slice(0, 4);
-      el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      el.vote_average = !el.vote_average ? '' : el.vote_average.toFixed(1);
-    });
-    console.log('TRANSFORM', arrObj);
-    return arrObj;
-  }
 }

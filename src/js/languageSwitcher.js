@@ -16,6 +16,12 @@ export function onClickUa() {
   genresSelect.renderGenresUa();
   refs.searchInput.setAttribute('placeholder', 'Пошук фильмів');
 
+  refs.modalVotes.textContent = 'Оцінки';
+  refs.modalPopularity.textContent = 'Популярність';
+  refs.modalOriginalTitle.textContent = 'Оригінальна назва';
+  refs.modalGenres.textContent = 'Жанри';
+  refs.modalAbout.textContent = 'Опис';
+
   refs.headerLibrary.textContent = 'Бібліотека';
   refs.headerHome.textContent = 'головна';
   refs.themeDark.textContent = 'темна';
@@ -31,6 +37,12 @@ export function onClickEn() {
   localStorage.setItem('language', 'en-US');
   genresSelect.renderGenresEn();
   refs.searchInput.setAttribute('placeholder', 'Movie search');
+
+  refs.modalVotes.textContent = 'Vote / Votes';
+  refs.modalPopularity.textContent = 'Popularity';
+  refs.modalOriginalTitle.textContent = 'Original title';
+  refs.modalGenres.textContent = 'Genre';
+  refs.modalAbout.textContent = 'About';
 
   refs.headerLibrary.textContent = 'library';
   refs.headerHome.textContent = 'home';

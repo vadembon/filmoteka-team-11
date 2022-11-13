@@ -7,9 +7,19 @@ export const refs = {
 
   modalVotes: document.querySelector('.js-votes'),
   modalPopularity: document.querySelector('.js-popularity'),
-  modalOriginalTitle: document.querySelector('.js-title'),
+  modalOriginalTitle: document.querySelector('.js-original-title'),
   modalGenres: document.querySelector('.js-genres'),
   modalAbout: document.querySelector('.js-about'),
+
+  modalImage: document.querySelector('.js-modal-img'),
+  modalFilmTitle: document.querySelector('.film__title'),
+  modalVoteAverage: document.querySelector('.js-vote-average'),
+  modalVoteCount: document.querySelector('.js-vote-count'),
+  modalPopularityValue: document.querySelector('.js-popularity-value'),
+  modalOriginalTitleValue: document.querySelector('.js-original-title-value'),
+  modalGenresValue: document.querySelector('.js-genres-value'),
+  modalAboutValue: document.querySelector('.film__about__text'),
+  // modal: document.querySelector('.'),
 
   paginationRef: document.querySelector('.pagination-container'),
 
