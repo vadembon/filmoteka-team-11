@@ -5,8 +5,7 @@ import { onClickQueueBtn, onClickWatchedBtn } from './render_library';
 refs.headerHome.addEventListener('click', switchToHome);
 refs.headerLibrary.addEventListener('click', switchToLibrary);
 
-function switchToHome(evt) {
-  evt.preventDefault();
+export function switchToHome() {
   refs.headerLibrBtnWatched.removeEventListener('click', onClickWatchedBtn);
   refs.headerLibrBtnQueue.removeEventListener('click', onClickQueueBtn);
   refs.filmList.innerHTML = '';
@@ -26,8 +25,7 @@ function switchToHome(evt) {
   localStorage.setItem('page', 'home');
 }
 
-function switchToLibrary(evt) {
-  evt.preventDefault();
+export function switchToLibrary() {
   refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
   refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
   refs.filmList.innerHTML = '';
