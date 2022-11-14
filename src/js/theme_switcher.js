@@ -21,7 +21,6 @@ function themeToggleHandler(evt) {
 
 export function lightTheme() {
   refs.themeToggle.removeAttribute('checked');
-
   refs.watchBtn.classList.remove('dark');
   refs.queueBtn.classList.remove('dark');
   refs.closeModalBtn.classList.remove('dark');
@@ -36,7 +35,6 @@ export function lightTheme() {
 
 export function darkTheme() {
   refs.themeToggle.setAttribute('checked', 'checked');
-  // refs.body.classList.remove('light');
   refs.watchBtn.classList.add('dark');
   refs.queueBtn.classList.add('dark');
   refs.closeModalBtn.classList.add('dark');

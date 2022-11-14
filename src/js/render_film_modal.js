@@ -36,7 +36,7 @@ function openModal(evt, id) {
   refs.closeModalBtn.addEventListener('click', closeModal);
   document.body.addEventListener('keydown', onEscButton);
   document.body.addEventListener('click', onBackdropClick);
-  refs.backdrop.classList.remove('visually-hidden');
+  refs.backdrop.classList.remove('is-hidden');
   refs.modalContainer.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
@@ -75,7 +75,7 @@ function openModal(evt, id) {
 function closeModal(evt) {
   document.body.removeEventListener('keydown', onEscButton);
   document.body.removeEventListener('click', onBackdropClick);
-  refs.backdrop.classList.add('visually-hidden');
+  refs.backdrop.classList.add('is-hidden');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
 }
