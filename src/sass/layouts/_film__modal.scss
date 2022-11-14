@@ -28,8 +28,8 @@
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     // display: flex;
     margin: auto;
-    width: 100%;
-    height: 570px;
+    width: 704px;
+    height: 552px;
     padding: 40px 36px 40px 36px;
   }
   @media screen and (min-width: 1024px) {
@@ -135,15 +135,17 @@
 .add-btns {
   display: flex;
   margin-bottom: 16px;
+  justify-content: center;
   // display: flex;
   // margin-left: 331px;
   // margin-bottom: 323px;
   // margin-top: -75px;
   @media screen and (min-width: 768px) and (max-width: 1023px) {
+    justify-content: flex-start;
   }
   @media screen and (min-width: 1024px) {
     display: flex;
-
+    justify-content: flex-start;
     margin-bottom: 323px;
   }
 }
@@ -182,8 +184,16 @@
 }
 
 .info-wraper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @media screen and (min-width: 768px) {
     display: flex;
+    flex-direction: row;
+  }
+  @media screen and (min-width: 1024px) {
+    align-items: flex-start;
   }
 }
 
