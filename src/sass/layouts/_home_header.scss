@@ -275,13 +275,19 @@ option {
 // ////////////////  SEARH PANEL   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 .search-form-list {
-  // max-height: 300px;
-  background-color: #303030df;
+  max-height: 200px;
+  // background-color: #303030df;
   position: absolute;
   width: 100%;
-  z-index: 99999;
+  z-index: 9999;
   padding: 0 20px;
   overflow: auto;
+  // backdrop-filter: blur(5px);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.76), rgba(28, 27, 27, 0.3)),
+      url(../images/searchform-1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .search-form-list__item {
@@ -291,6 +297,17 @@ option {
   align-items: center;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+.search-form-list__item:hover,
+.search-form-list__item:focus {
+  border-bottom: 1px solid #d5d8d63d;
+  border-top: 1px solid #d5d8d63d;
+  opacity: 0.79;
+  transform: translateY(2px);
+  transform: translateX(3px);
+  // outline: none;
+  // outline-offset: 0;
 }
 
 .search-form-list__thumb {
@@ -304,12 +321,12 @@ option {
   height: 100%;
 }
 
-.search-form-list__info {
-}
+// .search-form-list__info {
+// }
 
 .search-form-list__title {
   margin-bottom: 10px;
 }
 
-.search-form-list__date {
-}
+// .search-form-list__date {
+// }
