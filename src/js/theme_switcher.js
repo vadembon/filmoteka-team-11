@@ -3,6 +3,7 @@ import { refs } from './refs';
 let themeStatus = localStorage.getItem('theme');
 themeStatus = !themeStatus ? 'light' : themeStatus;
 localStorage.setItem('theme', themeStatus);
+localStorage.getItem('theme') === 'dark' ? darkTheme() : lightTheme();
 
 refs.themeToggle.addEventListener('change', themeToggleHandler);
 
@@ -24,6 +25,7 @@ function themeToggleHandler(evt) {
 
     // refs.body.classList.add('light');
   }
+
   function darkTheme() {
     // refs.body.classList.remove('light');
     refs.body.classList.add('dark');
