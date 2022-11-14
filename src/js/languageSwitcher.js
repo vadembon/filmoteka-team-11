@@ -3,8 +3,6 @@ import FilmApiService from './movie_database_api';
 import { renderTrendingList } from './render_movie_list';
 import GenresLanguage from './render_genres';
 
-console.log('langugeSwitcher');
-
 const apiRequest = new FilmApiService();
 const genresSelect = new GenresLanguage();
 

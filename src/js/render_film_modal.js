@@ -40,7 +40,6 @@ function openModal(evt, id) {
   const watchedString =
     lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
   const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-  // console.log(removeString, watchedString, queueString, evt.path[2].id);
 
   refs.addQueueBtn.addEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.addEventListener('click', onClickAddWatchedBtn);
@@ -60,8 +59,6 @@ function openModal(evt, id) {
       refs.addWatchedBtn.textContent = removeString;
     } else {
       refs.addWatchedBtn.textContent = watchedString;
-      console.log('watched');
-      refs.addWatchedBtn.classList.remove('button-remove');
     }
   }
 
@@ -70,10 +67,8 @@ function openModal(evt, id) {
     console.log(her);
     if (her.map(el => el.id).includes(+movieId)) {
       refs.addQueueBtn.textContent = removeString;
-      refs.addQueueBtn.classList.add('button-remove');
     } else {
       refs.addQueueBtn.textContent = queueString;
-      refs.addQueueBtn.classList.remove('button-remove');
     }
   }
   apiRequest.language = localStorage.getItem('language');
@@ -120,14 +115,11 @@ function onEscButton(evt) {
 
 function onClickAddWatchedBtn(evt) {
   evt.preventDefault();
-  if (localStorage.getItem('page') === 'home')
-    refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
+
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
   const watchedString =
     lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
-  // const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-  // console.log(removeString, watchedString, queueString);
   const watched = JSON.parse(localStorage.getItem('watched'));
   const arrCardWatched = watched ? watched : [];
   const savedCardWatched = localStorage.getItem('movie');
@@ -138,14 +130,12 @@ function onClickAddWatchedBtn(evt) {
     const newArr = arrCardWatched.filter(el => el.id !== parsedCardWatched.id);
     localStorage.removeItem('watched');
 
-    // console.log('newArr', newArr);
     localStorage.setItem('watchedFilter', JSON.stringify(newArr));
     const parseFilter = JSON.parse(localStorage.getItem('watchedFilter'));
     localStorage.setItem('watched', JSON.stringify(parseFilter));
   } else {
     refs.addWatchedBtn.textContent = removeString;
     arrCardWatched.push(parsedCardWatched);
-    // console.log('saved', parsedCardWatched.id);
     localStorage.setItem('watched', JSON.stringify(arrCardWatched));
   }
   if (localStorage.getItem('page') === 'library') {
@@ -178,7 +168,6 @@ function onClickAddQueueBtn(evt) {
   } else {
     refs.addQueueBtn.textContent = removeString;
     arrCardQueue.push(parsedCardQueue);
-    // console.log('saved', parsedCardQueue);
     localStorage.setItem('queue', JSON.stringify(arrCardQueue));
   }
   if (localStorage.getItem('page') === 'library') {

@@ -34,7 +34,6 @@ export function renderLibrary(key) {
 }
 
 function transformLibrary(object, lang) {
-  // console.log('transform', arrObj);
   if (lang === 'en-US') {
     object.map(el => {
       let i = 0;
@@ -46,8 +45,6 @@ function transformLibrary(object, lang) {
         .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      console.log(el.genres_name, typeof el.vote_average);
-      // el.vote_average = !el.vote_average ? '' : +el.vote_average.toFixed(1);
     });
     return object;
   }
@@ -63,9 +60,8 @@ function transformLibrary(object, lang) {
         .slice(0, 3);
       el.release_date = el.release_date.slice(0, 4);
       el.poster_path = ` https://image.tmdb.org/t/p/w500${el.poster_path}`;
-      // el.vote_average = !el.vote_average ? '' : +el.vote_average.toFixed(1);
     });
-    // console.log('TRANSFORM', arrObj);
+
     return object;
   }
 }
