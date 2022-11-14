@@ -36,7 +36,9 @@ export const refs = {
   uaLanguageBtn: document.querySelector('#ua_btn'),
   enLanguageBtn: document.querySelector('#en_btn'),
 
+  
   themeToggle: document.querySelector('#switch'),
+  themeToggleDIV: document.querySelector('.header__bg'),
   themeLight: document.querySelector('.header__light'),
   themeDark: document.querySelector('.header__dark'),
 
