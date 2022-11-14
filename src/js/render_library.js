@@ -4,18 +4,20 @@ import { refs } from './refs';
 import nothing from '../images/nothing.webp ';
 
 export function onClickWatchedBtn(evt) {
+  refs.headerLibrBtnWatched.classList.add('is-active');
   evt.preventDefault();
   renderLibrary('watched');
   Notiflix.Loading.remove();
 }
 
 export function onClickQueueBtn(evt) {
+  refs.headerLibrBtnWatched.classList.remove('is-active');
   evt.preventDefault();
   renderLibrary('queue');
   Notiflix.Loading.remove();
 }
 
-function renderLibrary(key) {
+export function renderLibrary(key) {
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
   const arrObj = JSON.parse(localStorage.getItem(key));

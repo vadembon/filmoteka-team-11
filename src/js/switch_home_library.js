@@ -1,6 +1,10 @@
 import { refs } from './refs';
 import { renderTrendingList } from './render_movie_list';
-import { onClickQueueBtn, onClickWatchedBtn } from './render_library';
+import {
+  onClickQueueBtn,
+  onClickWatchedBtn,
+  renderLibrary,
+} from './render_library';
 
 refs.headerHome.addEventListener('click', switchToHome);
 refs.headerLibrary.addEventListener('click', switchToLibrary);
@@ -28,8 +32,9 @@ export function switchToHome() {
 export function switchToLibrary() {
   refs.headerLibrBtnWatched.addEventListener('click', onClickWatchedBtn);
   refs.headerLibrBtnQueue.addEventListener('click', onClickQueueBtn);
+  refs.headerLibrBtnWatched.classList.add('is-active');
   refs.filmList.innerHTML = '';
-  renderTrendingList();
+  renderLibrary('watched');
   refs.headerSection.classList.remove('header__section');
   refs.headerSection.classList.add('header-library');
   refs.searchForm.style.display = 'none';

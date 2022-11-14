@@ -1,9 +1,10 @@
 import FilmApiService from './movie_database_api';
 import { refs } from './refs';
 import comingSoon from '../images/coming_soon.jpg';
+import { renderLibrary } from './render_library';
 
 const apiRequest = new FilmApiService();
-const arrCardWatched = [];
+// const arrCardWatched = [];
 
 // const lang = localStorage.getItem('language');
 // const apiRequest = new FilmApiService();
@@ -57,7 +58,6 @@ function openModal(evt, id) {
     const her = JSON.parse(localStorage.getItem('watched'));
     if (her.map(el => el.id).includes(+movieId)) {
       refs.addWatchedBtn.textContent = removeString;
-      refs.addWatchedBtn.classList.add('button-remove');
     } else {
       refs.addWatchedBtn.textContent = watchedString;
       console.log('watched');
@@ -120,6 +120,8 @@ function onEscButton(evt) {
 
 function onClickAddWatchedBtn(evt) {
   evt.preventDefault();
+  if (localStorage.getItem('page') === 'home')
+    refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
   const watchedString =
@@ -136,7 +138,7 @@ function onClickAddWatchedBtn(evt) {
     const newArr = arrCardWatched.filter(el => el.id !== parsedCardWatched.id);
     localStorage.removeItem('watched');
 
-    console.log('newArr', newArr);
+    // console.log('newArr', newArr);
     localStorage.setItem('watchedFilter', JSON.stringify(newArr));
     const parseFilter = JSON.parse(localStorage.getItem('watchedFilter'));
     localStorage.setItem('watched', JSON.stringify(parseFilter));
@@ -145,6 +147,12 @@ function onClickAddWatchedBtn(evt) {
     arrCardWatched.push(parsedCardWatched);
     // console.log('saved', parsedCardWatched.id);
     localStorage.setItem('watched', JSON.stringify(arrCardWatched));
+  }
+  if (localStorage.getItem('page') === 'library') {
+    closeModal();
+    renderLibrary('watched');
+    refs.headerLibrBtnQueue.classList.remove('is-active');
+    refs.headerLibrBtnWatched.classList.add('is-active');
   }
 }
 
@@ -172,6 +180,12 @@ function onClickAddQueueBtn(evt) {
     arrCardQueue.push(parsedCardQueue);
     // console.log('saved', parsedCardQueue);
     localStorage.setItem('queue', JSON.stringify(arrCardQueue));
+  }
+  if (localStorage.getItem('page') === 'library') {
+    closeModal();
+    renderLibrary('queue');
+    refs.headerLibrBtnWatched.classList.remove('is-active');
+    refs.headerLibrBtnQueue.classList.add('is-active');
   }
 }
 

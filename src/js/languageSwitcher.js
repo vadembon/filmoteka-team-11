@@ -30,7 +30,7 @@ export function onClickUa() {
   refs.headerLibrBtnQueue.textContent = 'подивитись';
   apiRequest.language = localStorage.getItem('language');
   console.log(localStorage.getItem('language'));
-  renderTrendingList();
+  if (localStorage.getItem('page') === 'home') renderTrendingList();
 }
 
 export function onClickEn() {
@@ -51,7 +51,7 @@ export function onClickEn() {
   refs.headerLibrBtnWatched.textContent = 'watched';
   refs.headerLibrBtnQueue.textContent = 'queue';
   apiRequest.language = localStorage.getItem('language');
-  renderTrendingList();
+  if (localStorage.getItem('page') === 'home') renderTrendingList();
 }
 
 // export function modalLanguage() {
