@@ -23,6 +23,11 @@ export const refs = {
   headerSection: document.querySelector('.header__section'),
   headerLibrary: document.querySelector('#library'),
   headerHome: document.querySelector('#home'),
+  containerGallery: document.querySelector('.container-gallery'),
+  footer: document.querySelector('.footer'),
+  closeModalBtn: document.querySelector('.modal-close-btn'),
+  watchBtn: document.querySelector('.watch_btn'),
+  queueBtn: document.querySelector('.queue_btn'),
 
   headerLibrBtnWatched: document.querySelector('#watched'),
   headerLibrBtnQueue: document.querySelector('#queue'),
