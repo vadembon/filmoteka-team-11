@@ -12,4 +12,4 @@ import './js/pagination.js';
 import './js/switch_home_library';
 import './js/scrollToTop';
 import './js/slider';
-// import './js/render_modal';
+import './js/theme_switcher';

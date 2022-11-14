@@ -4,13 +4,12 @@ export const refs = {
   searchInput: document.querySelector('.js-search-input'),
   searchBtn: document.querySelector('.header__form-submit-btn'),
   searchList: document.querySelector('.search-form-list'),
-
+  /////////////////////   MODAL   \\\\\\\\\\\\\\\\\\\\\\\
   modalVotes: document.querySelector('.js-votes'),
   modalPopularity: document.querySelector('.js-popularity'),
   modalOriginalTitle: document.querySelector('.js-original-title'),
   modalGenres: document.querySelector('.js-genres'),
   modalAbout: document.querySelector('.js-about'),
-
   modalImage: document.querySelector('.js-modal-img'),
   modalFilmTitle: document.querySelector('.film__title'),
   modalVoteAverage: document.querySelector('.js-vote-average'),
@@ -20,9 +19,7 @@ export const refs = {
   modalGenresValue: document.querySelector('.js-genres-value'),
   modalAboutValue: document.querySelector('.film__about__text'),
   modalContainer: document.querySelector('.modal-container'),
-
-  paginationRef: document.querySelector('.pagination-container'),
-
+  ////////////////////////    TOGGLE  THEME    \\\\\\\\\\\\\\\\\\\\\\\\\\\
   headerSection: document.querySelector('.header__section'),
   headerLibrary: document.querySelector('#library'),
   headerHome: document.querySelector('#home'),
@@ -30,7 +27,8 @@ export const refs = {
   headerLibrBtnWatched: document.querySelector('#watched'),
   headerLibrBtnQueue: document.querySelector('#queue'),
   librButtons: document.querySelector('.header-library__btn-list'),
-  themeToggle: document.querySelector('#switch'),
+  // themeToggle: document.querySelector('#switch'),
+  paginationRef: document.querySelector('.pagination-container'),
 
   filmList: document.querySelector('.collection'),
   genreSelect: document.querySelector('.js-genre-filter'),
@@ -38,7 +36,7 @@ export const refs = {
   uaLanguageBtn: document.querySelector('#ua_btn'),
   enLanguageBtn: document.querySelector('#en_btn'),
 
-  themeToggle: document.querySelector('.header__bg'),
+  themeToggle: document.querySelector('#switch'),
   themeLight: document.querySelector('.header__light'),
   themeDark: document.querySelector('.header__dark'),
 
