@@ -22,6 +22,7 @@ function switchToHome(evt) {
   refs.headerLibrary.classList.remove('header__nav-link--active');
   refs.headerHome.classList.add('header__nav-link--active');
   refs.paginationRef.classList.remove('visually-hidden');
+  localStorage.setItem('page', 'home');
 }
 
 function switchToLibrary(evt) {
@@ -41,4 +42,5 @@ function switchToLibrary(evt) {
   refs.headerLibrary.classList.add('header__nav-link--active');
   refs.headerHome.classList.remove('header__nav-link--active');
   refs.paginationRef.classList.add('visually-hidden');
+  localStorage.setItem('page', 'library');
 }
