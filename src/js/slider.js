@@ -49,12 +49,18 @@ const glide = new Glide('.glide', {
   bound: true,
   breakpoints: {
     1280: {
-      perView: 7,
+      perView: 8,
     },
-    768: {
+    994: {
       perView: 6,
     },
-    480: {
+    648: {
+      perView: 5,
+    },
+    539: {
+      perView: 4,
+    },
+    407: {
       perView: 3,
     },
     320: {
