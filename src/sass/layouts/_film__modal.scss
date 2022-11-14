@@ -8,7 +8,7 @@
 
 .modal-container {
   overflow-x: auto;
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   border-radius: 7px;
   top: 50%;
@@ -32,12 +32,14 @@
     width: 704px;
     height: 552px;
     padding: 40px 36px 40px 36px;
+    overflow: hidden;
   }
   @media screen and (min-width: 1024px) {
     // display: flex;
     max-width: 882px;
     height: 568px;
     padding: 40px 16px 40px 16px;
+    overflow: hidden;
   }
   .backdrop.is-hidden & {
     transform: translate(-50%, -50%) scale(0.8);
