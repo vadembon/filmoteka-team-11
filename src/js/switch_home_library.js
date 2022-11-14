@@ -15,8 +15,9 @@ function switchToHome(evt) {
   refs.headerSection.classList.add('header__section');
   refs.librButtons.classList.add('visually-hidden');
   refs.searchForm.style.display = 'block';
-  refs.themeToggle.style.display = 'flex';
+  refs.themeToggle.style.display = 'none';
   refs.genreSelect.style.display = 'flex';
+  refs.themeToggleDIV.style.display = 'flex';
   refs.uaLanguageBtn.style.display = 'block';
   refs.enLanguageBtn.style.display = 'block';
   refs.headerLibrary.classList.remove('header__nav-link--active');
@@ -37,6 +38,7 @@ function switchToLibrary(evt) {
   refs.librButtons.classList.remove('visually-hidden');
   refs.themeToggle.style.display = 'none';
   refs.genreSelect.style.display = 'none';
+  refs.themeToggleDIV.style.display = 'none';
   refs.uaLanguageBtn.style.display = 'none';
   refs.enLanguageBtn.style.display = 'none';
   refs.headerLibrary.classList.add('header__nav-link--active');
