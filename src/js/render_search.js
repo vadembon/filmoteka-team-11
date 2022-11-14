@@ -54,7 +54,6 @@ function onInput(evt) {
   apiRequest.searchQuery = evt.target.value;
   const searchRes = apiRequest.fetchSearchMovie();
   searchRes.then(res => {
-    console.log(res);
     if (!res) {
       // Notiflix.Notify.warning(' Please type something.');
       refs.searchInput.value = '';
@@ -69,7 +68,6 @@ function onInput(evt) {
 
     renderSearchPanel(transformObj(res, lang));
   });
-  console.log(evt.target.value, refs.searchInput.value);
 }
 
 function renderSearchPanel(arrObj) {

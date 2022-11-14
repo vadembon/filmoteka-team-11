@@ -27,7 +27,6 @@ export function onClickUa() {
   refs.headerLibrBtnWatched.textContent = 'переглянуто';
   refs.headerLibrBtnQueue.textContent = 'подивитись';
   apiRequest.language = localStorage.getItem('language');
-  console.log(localStorage.getItem('language'));
   if (localStorage.getItem('page') === 'home') renderTrendingList();
 }
 
@@ -51,20 +50,3 @@ export function onClickEn() {
   apiRequest.language = localStorage.getItem('language');
   if (localStorage.getItem('page') === 'home') renderTrendingList();
 }
-
-// export function modalLanguage() {
-//   console.log(localStorage.getItem('language') === 'en-US');
-//   if (localStorage.getItem('language') === 'en-US') {
-//     refs.modalVotes.textContent = 'Vote / Votes';
-//     refs.modalPopularity.textContent = 'Popularity';
-//     refs.modalOriginalTitle.textContent = 'Original title';
-//     refs.modalGenres.textContent = 'Genre';
-//     refs.modalAbout.textContent = 'About';
-//   } else {
-//     refs.modalVotes.textContent = 'Оцінки';
-//     refs.modalPopularity.textContent = 'Популярність';
-//     refs.modalOriginalTitle.textContent = 'Оригінальна назва';
-//     refs.modalGenres.textContent = 'Жанри';
-//     refs.modalAbout.textContent = 'Опис';
-//   }
-// }

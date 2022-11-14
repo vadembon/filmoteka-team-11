@@ -140,7 +140,6 @@ function onClickAddQueueBtn(evt) {
     const newArr = arrCardQueue.filter(el => el.id !== parsedCardQueue.id);
     localStorage.removeItem('queue');
 
-    console.log('newArr', newArr);
     localStorage.setItem('queueFilter', JSON.stringify(newArr));
     const parseFilter = JSON.parse(localStorage.getItem('queueFilter'));
     localStorage.setItem('queue', JSON.stringify(parseFilter));

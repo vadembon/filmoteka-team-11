@@ -59,7 +59,7 @@ export default class FilmApiService {
     try {
       const lang = localStorage.getItem('language');
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}&query=${this.searchQuery}`;
-      console.log('url', url);
+
       // Notiflix.Loading.standard();
       const searchingData = await axios.get(url);
       // Notiflix.Loading.remove();
