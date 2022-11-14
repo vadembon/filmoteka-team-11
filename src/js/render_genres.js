@@ -11,7 +11,6 @@ import { onClickSearch } from './render_search';
 
 refs.genreSelect.addEventListener('change', onChange);
 const apiRequest = new FilmApiService();
-console.log('genre');
 
 export default class GenresLanguage {
   constructor() {}

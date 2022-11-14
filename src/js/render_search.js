@@ -11,8 +11,6 @@ import { onClickGenre } from './render_genres';
 
 const apiRequest = new FilmApiService();
 
-console.log('renderSearch');
-
 refs.searchForm.addEventListener('submit', onSubmit);
 refs.searchInput.addEventListener('input', debounce(onInput, 350));
 
@@ -58,7 +56,7 @@ function onInput(evt) {
   searchRes.then(res => {
     console.log(res);
     if (!res) {
-      Notiflix.Notify.failure(' Please type something.');
+      // Notiflix.Notify.warning(' Please type something.');
       refs.searchInput.value = '';
       refs.searchList.innerHTML = '';
       return;

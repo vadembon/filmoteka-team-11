@@ -17,13 +17,10 @@ export function renderTrendingList() {
   apiRequest.language = localStorage.getItem('language');
   apiRequest.pageNumber = currentPage;
 
-  console.log('page', apiRequest.pageNumber);
-
   const movieArr = apiRequest.fetchTrendingMovies();
 
   movieArr.then(res => {
     renderList(transformObj(res, apiRequest.language));
-    console.log(apiRequest.language);
   });
 }
 

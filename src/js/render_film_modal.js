@@ -4,16 +4,6 @@ import comingSoon from '../images/coming_soon.jpg';
 import { renderLibrary } from './render_library';
 
 const apiRequest = new FilmApiService();
-// const arrCardWatched = [];
-
-// const lang = localStorage.getItem('language');
-// const apiRequest = new FilmApiService();
-// const removeString = lang === 'en-US' ? 'remove' : 'видалити';
-// const watchedString =
-//   lang === 'en-US' ? 'add to watched' : 'додати до переглянутого';
-// const queueString = lang === 'en-US' ? 'add to queue' : 'додати до черги';
-
-// console.log(removeString, watchedString, queueString);
 
 refs.filmList.addEventListener('click', openModal);
 refs.sliderGlide.addEventListener('click', onSliderClick);
@@ -50,7 +40,6 @@ function openModal(evt, id) {
   refs.modalContainer.classList.remove('visually-hidden');
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
-  console.log(queue, watched);
   refs.addWatchedBtn.textContent = watchedString;
   refs.addQueueBtn.textContent = queueString;
   if (watched) {
@@ -64,7 +53,7 @@ function openModal(evt, id) {
 
   if (queue) {
     const her = JSON.parse(localStorage.getItem('queue'));
-    console.log(her);
+
     if (her.map(el => el.id).includes(+movieId)) {
       refs.addQueueBtn.textContent = removeString;
     } else {
@@ -78,19 +67,10 @@ function openModal(evt, id) {
       'style',
       `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
     );
-    console.log(res);
-    setTimeout(renderModal(res), 2500);
 
-    // modalLanguage();
+    setTimeout(renderModal(res), 2500);
   });
 }
-
-// function render(movie) {
-//   console.log(movie);
-//   localStorage.setItem('movie', JSON.stringify(movie));
-//   const markup = renderModal(movie);
-//   refs.modal.innerHTML = markup;
-// }
 
 function closeModal(evt) {
   document.body.removeEventListener('keydown', onEscButton);
@@ -98,7 +78,6 @@ function closeModal(evt) {
   refs.backdrop.classList.add('visually-hidden');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
-  // refs.sliderGlide.removeEventListener('click', onSliderClick);
 }
 
 function onBackdropClick(evt) {
@@ -179,10 +158,8 @@ function onClickAddQueueBtn(evt) {
 }
 
 function renderModal(obj) {
-  // console.log('modal', obj);
   const lang = localStorage.getItem('language');
   const transObj = transformModal(obj, lang);
-  // console.log('modal', transObj);
 
   refs.modalImage.setAttribute('src', `${transObj.poster_path}`);
   refs.modalFilmTitle.textContent = transObj.title;
@@ -212,7 +189,6 @@ export function transformModal(object, lang) {
     object.vote_average = !object.vote_average
       ? ''
       : object.vote_average.toFixed(1);
-    console.log(object.genres_name);
 
     return object;
   }
@@ -233,7 +209,6 @@ export function transformModal(object, lang) {
       ? ''
       : object.vote_average.toFixed(1);
 
-    // console.log('TRANSFORM', arrObj);
     return object;
   }
 }
