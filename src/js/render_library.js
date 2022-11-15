@@ -21,7 +21,7 @@ export function renderLibrary(key) {
   Notiflix.Loading.standard();
   const lang = localStorage.getItem('language');
   const arrObj = JSON.parse(localStorage.getItem(key));
-  if (!arrObj) {
+  if (!arrObj[0]) {
     refs.filmList.innerHTML = `<img src="${nothing}" alt="Your Library is empty" style='	margin-left: auto;
 	margin-right: auto;'></img>`;
     Notiflix.Loading.remove();
