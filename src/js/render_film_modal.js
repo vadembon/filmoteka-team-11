@@ -37,7 +37,7 @@ function openModal(evt, id) {
   document.body.addEventListener('keydown', onEscButton);
   document.body.addEventListener('click', onBackdropClick);
   refs.backdrop.classList.remove('is-hidden');
-  refs.modalContainer.classList.remove('visually-hidden');
+  setTimeout(openModalContainer, 800);
   const queue = JSON.parse(localStorage.getItem('queue'));
   const watched = JSON.parse(localStorage.getItem('watched'));
   refs.addWatchedBtn.textContent = watchedString;
@@ -68,7 +68,7 @@ function openModal(evt, id) {
       `background-image: url("https://image.tmdb.org/t/p/original/${res.backdrop_path}"); background-size: cover; background-position: 50% 50%;`
     );
 
-    setTimeout(renderModal(res), 2500);
+    renderModal(res);
   });
 }
 
@@ -76,6 +76,7 @@ function closeModal(evt) {
   document.body.removeEventListener('keydown', onEscButton);
   document.body.removeEventListener('click', onBackdropClick);
   refs.backdrop.classList.add('is-hidden');
+  refs.modalContainer.classList.add('is-hidden-modal');
   refs.addQueueBtn.removeEventListener('click', onClickAddQueueBtn);
   refs.addWatchedBtn.removeEventListener('click', onClickAddWatchedBtn);
 }
@@ -90,6 +91,10 @@ function onEscButton(evt) {
   if (evt.code === 'Escape') {
     closeModal();
   }
+}
+
+function openModalContainer() {
+  refs.modalContainer.classList.remove('is-hidden-modal');
 }
 
 function onClickAddWatchedBtn(evt) {

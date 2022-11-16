@@ -37,7 +37,7 @@ export const refs = {
 
   filmList: document.querySelector('.collection'),
   genreSelect: document.querySelector('.js-genre-filter'),
-  modal: document.querySelector('.modal-info'),
+  // modal: document.querySelector('.modal-info'),
   uaLanguageBtn: document.querySelector('#ua_btn'),
   enLanguageBtn: document.querySelector('#en_btn'),
 
