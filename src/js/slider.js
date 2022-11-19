@@ -11,8 +11,8 @@ if (!refs.lisrTopFilms) {
 
 const API_KEY = '77e7936073a1f82fbc0d3a17a985fb5b';
 const URL = 'https://api.themoviedb.org/3';
-// const API_URL = `${URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
-const API_URL = `${URL}/movie/upcoming?api_key=${API_KEY}`;
+const API_URL = `${URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
+// const API_URL = `${URL}/movie/upcoming?api_key=${API_KEY}`;
 const IMG = 'https://image.tmdb.org/t/p/w500';
 
 async function getMovies() {
@@ -40,6 +40,36 @@ async function render(data) {
   });
 }
 
+// const glide = new Glide('.glide', {
+//   type: 'slider',
+//   startAt: 0,
+//   perView: 10,
+//   autoplay: 3000,
+//   // hoverpause: true,
+//   bound: true,
+//   breakpoints: {
+//     1280: {
+//       perView: 8,
+//     },
+//     994: {
+//       perView: 6,
+//     },
+//     648: {
+//       perView: 5,
+//     },
+//     539: {
+//       perView: 4,
+//     },
+//     407: {
+//       perView: 3,
+//     },
+//     320: {
+//       perView: 2,
+//     },
+//   },
+// });
+// glide.mount();
+
 const glide = new Glide('.glide', {
   type: 'slider',
   startAt: 0,
@@ -49,18 +79,12 @@ const glide = new Glide('.glide', {
   bound: true,
   breakpoints: {
     1280: {
-      perView: 8,
+      perView: 7,
     },
-    994: {
+    768: {
       perView: 6,
     },
-    648: {
-      perView: 5,
-    },
-    539: {
-      perView: 4,
-    },
-    407: {
+    480: {
       perView: 3,
     },
     320: {
