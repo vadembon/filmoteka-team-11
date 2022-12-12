@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Notiflix, { Notify } from 'notiflix';
-// import './js/pagination.js';
 
 const API_KEY = 'ec34284630374f864ce40bf102f3f73e';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -32,7 +31,7 @@ export default class FilmApiService {
       const url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}`;
       Notiflix.Loading.standard();
       const trendingData = await axios.get(url);
-      // console.log('apiPage after', this.pageNumber);
+
       Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
@@ -60,9 +59,8 @@ export default class FilmApiService {
       const lang = localStorage.getItem('language');
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${lang}&page=${this.pageNumber}&query=${this.searchQuery}`;
 
-      // Notiflix.Loading.standard();
       const searchingData = await axios.get(url);
-      // Notiflix.Loading.remove();
+
       return searchingData.data.results;
     } catch (error) {
       console.log(error);
@@ -131,19 +129,4 @@ export default class FilmApiService {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
-
-  // get pageNumber() {
-  //   return this.pageNumber;
-  // }
-
-  // set pageNumber(newPage) {
-  //   this.pageNumber = newPage;
-  // }
-
-  // get language() {
-  //   return this.language;
-  // }
-  // set language(newLang) {
-  //   this.language = newLang;
-  // }
 }
