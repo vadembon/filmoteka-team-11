@@ -79,8 +79,10 @@ export default class FilmApiService {
       return details.data;
     } catch (error) {
       console.log(error);
+      Notiflix.Loading.remove();
       Notiflix.failure('Oops, an error occurred');
     }
+    Notiflix.Loading.remove();
   }
 
   async fetchTrailerVideo(id) {

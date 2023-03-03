@@ -5,26 +5,26 @@ import { renderLibrary } from './render_library';
 
 const apiRequest = new FilmApiService();
 
-refs.filmList.addEventListener('click', openModal);
+refs.filmList.addEventListener('click', onCartClick);
 refs.sliderGlide.addEventListener('click', onSliderClick);
 refs.searchList.addEventListener('click', onSearchClick);
 
+function onCartClick(evt) {
+  evt.preventDefault();
+  openModal(evt.target.id);
+}
+
 function onSearchClick(evt) {
-  console.log(evt);
-  openModal(evt, evt.path[2].id);
+  evt.preventDefault();
+  openModal(evt.target.id);
 }
 
 function onSliderClick(evt) {
-  // console.log(evt.path[0].id);
-  openModal(evt, evt.path[0].id);
+  evt.preventDefault();
+  openModal(evt.target.id);
 }
 
-function openModal(evt, id) {
-  evt.preventDefault();
-  if (evt.target.nodeName !== 'IMG') {
-    return;
-  }
-  const movieId = id ? id : evt.path[2].id;
+function openModal(id) {
   const lang = localStorage.getItem('language');
   const removeString = lang === 'en-US' ? 'remove' : 'видалити';
   const watchedString =
@@ -44,7 +44,7 @@ function openModal(evt, id) {
   refs.addQueueBtn.textContent = queueString;
   if (watched) {
     const her = JSON.parse(localStorage.getItem('watched'));
-    if (her.map(el => el.id).includes(+movieId)) {
+    if (her.map(el => el.id).includes(+id)) {
       refs.addWatchedBtn.textContent = removeString;
     } else {
       refs.addWatchedBtn.textContent = watchedString;
@@ -54,14 +54,14 @@ function openModal(evt, id) {
   if (queue) {
     const her = JSON.parse(localStorage.getItem('queue'));
 
-    if (her.map(el => el.id).includes(+movieId)) {
+    if (her.map(el => el.id).includes(+id)) {
       refs.addQueueBtn.textContent = removeString;
     } else {
       refs.addQueueBtn.textContent = queueString;
     }
   }
   apiRequest.language = localStorage.getItem('language');
-  const details = apiRequest.fetchMoviesDetails(movieId);
+  const details = apiRequest.fetchMoviesDetails(id);
   details.then(res => {
     refs.backdrop.setAttribute(
       'style',

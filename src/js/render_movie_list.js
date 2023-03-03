@@ -34,6 +34,7 @@ export function onClickTrending() {
 }
 
 export function renderList(movieArr) {
+  console.log(movieArr);
   refs.filmList.innerHTML = '';
   const markup = renderFilmCart(movieArr);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);
