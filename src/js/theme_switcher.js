@@ -29,8 +29,6 @@ export function lightTheme() {
   refs.footer.classList.remove('dark');
   refs.body.classList.remove('dark');
   refs.filmList.classList.remove('dark');
-
-  // refs.body.classList.add('light');
 }
 
 export function darkTheme() {

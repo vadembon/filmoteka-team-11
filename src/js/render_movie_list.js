@@ -26,15 +26,13 @@ export function renderTrendingList() {
 
 export function onClickTrending() {
   apiRequest.pageNumber = currentPage;
-  console.log('pagNum', apiRequest.pageNumber);
+
   apiRequest.fetchWeekTrendingMovies().then(res => {
     renderList(transformObj(res, apiRequest.language));
-    console.log(apiRequest.language);
   });
 }
 
 export function renderList(movieArr) {
-  console.log(movieArr);
   refs.filmList.innerHTML = '';
   const markup = renderFilmCart(movieArr);
   refs.filmList.insertAdjacentHTML('afterbegin', markup);

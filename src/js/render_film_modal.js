@@ -177,7 +177,6 @@ function renderModal(obj) {
 }
 
 export function transformModal(object, lang) {
-  // console.log('transform', arrObj);
   if (lang === 'en-US') {
     let i = 0;
     object.genres_name = object.genres

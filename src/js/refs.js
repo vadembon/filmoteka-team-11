@@ -32,12 +32,12 @@ export const refs = {
   headerLibrBtnWatched: document.querySelector('#watched'),
   headerLibrBtnQueue: document.querySelector('#queue'),
   librButtons: document.querySelector('.header-library__btn-list'),
-  // themeToggle: document.querySelector('#switch'),
+
   paginationRef: document.querySelector('.pagination-container'),
 
   filmList: document.querySelector('.collection'),
   genreSelect: document.querySelector('.js-genre-filter'),
-  // modal: document.querySelector('.modal-info'),
+
   uaLanguageBtn: document.querySelector('#ua_btn'),
   enLanguageBtn: document.querySelector('#en_btn'),
 
@@ -57,5 +57,4 @@ export const refs = {
   addQueueBtn: document.querySelector('.js-queue-btn'),
 
   sliderGlide: document.querySelector('.glide__slides'),
-  // removeWatchdBtn: document.querySelector('.button-remove'),
 };

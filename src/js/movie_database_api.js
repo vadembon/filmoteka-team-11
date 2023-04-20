@@ -21,7 +21,7 @@ export default class FilmApiService {
       Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
-      console.log(error);
+      Notiflix.failure('Oops, an error occurred');
     }
   }
 
@@ -35,7 +35,6 @@ export default class FilmApiService {
       Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
-      console.log(error);
       Notiflix.failure('Oops, an error occurred');
     }
   }
@@ -48,7 +47,6 @@ export default class FilmApiService {
       Notiflix.Loading.remove();
       return trendingData.data.results;
     } catch (error) {
-      console.log(error);
       Notiflix.failure('Oops, an error occurred');
     }
   }
@@ -63,7 +61,6 @@ export default class FilmApiService {
 
       return searchingData.data.results;
     } catch (error) {
-      console.log(error);
       Notiflix.failure('Oops, an error occurred');
     }
   }
@@ -78,7 +75,6 @@ export default class FilmApiService {
       Notiflix.Loading.remove();
       return details.data;
     } catch (error) {
-      console.log(error);
       Notiflix.Loading.remove();
       Notiflix.failure('Oops, an error occurred');
     }
@@ -107,8 +103,8 @@ export default class FilmApiService {
         `${BASE_URL}${postBaseUrl}${searchParams}`
       );
       return genres.data.genres;
-    } catch {
-      error => console.log(error);
+    } catch (error) {
+      Notiflix.failure('Oops, an error occurred');
     }
   }
 

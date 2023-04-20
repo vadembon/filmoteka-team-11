@@ -20,13 +20,12 @@ function onSubmit(evt) {
   refs.paginationRef.removeEventListener('click', onClickGenre);
   refs.paginationRef.addEventListener('click', onClickSearch);
   firstPage();
-  console.log(evt, refs.searchInput.value);
+
   apiRequest.searchQuery = refs.searchInput.value;
   const searchRes = apiRequest.fetchSearchMovie();
   const lang = localStorage.getItem('language');
 
   searchRes.then(res => {
-    console.log(res);
     if (!res.length) {
       Notiflix.Notify.failure('Sorry, film is not found. Please try again.');
       return;
@@ -40,10 +39,9 @@ function onSubmit(evt) {
 export function onClickSearch(evt) {
   evt.preventDefault();
   apiRequest.pageNumber = currentPage;
-  console.log('pagNumSearch', apiRequest.pageNumber);
+
   apiRequest.fetchSearchMovie().then(res => {
     renderList(transformObj(res, apiRequest.language));
-    console.log(apiRequest.language);
   });
 }
 
@@ -55,7 +53,6 @@ function onInput(evt) {
   const searchRes = apiRequest.fetchSearchMovie();
   searchRes.then(res => {
     if (!res) {
-      // Notiflix.Notify.warning(' Please type something.');
       refs.searchInput.value = '';
       refs.searchList.innerHTML = '';
       return;

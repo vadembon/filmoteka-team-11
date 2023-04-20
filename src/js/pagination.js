@@ -68,7 +68,6 @@ function render(pageNumber) {
   for (let i = startPage; i < startPage + 5; ++i) {
     pagesList.push(i);
   }
-  // console.log(pagesList);
 
   btn1Ref.textContent = pagesList[0];
   btn2Ref.textContent = pagesList[1];

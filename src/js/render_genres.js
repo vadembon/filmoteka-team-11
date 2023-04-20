@@ -36,20 +36,15 @@ function onChange(evt) {
   apiRequest.language = localStorage.getItem('language');
   apiRequest.pageNumber = currentPage;
   const genred = apiRequest.fetchMoviesWithGenre();
-  console.log('genreLang', apiRequest.language);
-  genred.then(res => renderList(transformObj(res, apiRequest.language)));
-  // paginationRender(apiRequest.fetchMoviesWithGenre.bind(FilmApiService));
-  // refs.paginationRef.addEventListener('click', onPaginationClick);
 
-  // onPaginationClick(evt);
+  genred.then(res => renderList(transformObj(res, apiRequest.language)));
 }
 
 export function onClickGenre(evt) {
   evt.preventDefault();
   apiRequest.pageNumber = currentPage;
-  console.log('pagNumGenre', apiRequest.pageNumber);
+
   apiRequest.fetchMoviesWithGenre().then(res => {
     renderList(transformObj(res, apiRequest.language));
-    console.log(apiRequest.language);
   });
 }
